@@ -44,12 +44,11 @@ public class PlayerCamera : MonoBehaviour
     // accumulated time for aiming transition
     float _aimingAcc = 0f;
 
-    public Camera MyCamera
+    public Camera Camera
     {
         get { return cam.GetComponent<Camera>(); }
     }
 
-    public System.Func<int> GetHealth;
     public System.Func<bool> GetAiming;
     public System.Func<float> GetPitch;
 
@@ -59,7 +58,6 @@ public class PlayerCamera : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         _distance = runningDistance;
-
     }
 
     private void Start()
@@ -122,15 +120,15 @@ public class PlayerCamera : MonoBehaviour
     {
         if (_target)
         {
-            var a = GetAiming != null ? GetAiming() : false;
-            var p = GetPitch != null ? GetPitch() : 0f;
+            bool isAiming = GetAiming != null ? GetAiming() : false;
+            float pitch = GetPitch != null ? GetPitch() : 0f;
 
             Cursor.lockState = cursorLockMode;
             Cursor.visible = false;
 
             if (_aiming)
             {
-                if (a == false)
+                if (!isAiming)
                 {
                     _aiming = false;
                     _aimingAcc = 0f;
@@ -138,7 +136,7 @@ public class PlayerCamera : MonoBehaviour
             }
             else
             {
-                if (a)
+                if (isAiming)
                 {
                     _aiming = true;
                     _aimingAcc = 0f;
@@ -159,7 +157,7 @@ public class PlayerCamera : MonoBehaviour
             Vector3 pos;
             Quaternion rot;
 
-            CalculateCameraTransform(_target, p, _distance, out pos, out rot);
+            CalculateCameraTransform(_target, pitch, _distance, out pos, out rot);
 
             if (!_aiming || allowSmoothing)
             {
