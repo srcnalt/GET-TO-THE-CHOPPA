@@ -59,6 +59,12 @@ public class PlayerCamera : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         _distance = runningDistance;
+
+    }
+
+    private void Start()
+    {
+        SetTarget(GameManager.Instance.Player.transform);
     }
 
     private void LateUpdate()
