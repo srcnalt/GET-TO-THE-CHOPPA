@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 077550f1cd01e84458139e211eb0b73e
-timeCreated: 1512211841
+guid: 94f42de175d7e8c4a807607ebd1a3ed3
+timeCreated: 1512219250
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,15 +10,13 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cube
-    4300002: Cube_001
-    7400000: Default Take
-    9500000: //RootNode
+    4300002: Cube.001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: unnamed
-    second: {fileID: 2100000, guid: 20abfad27d40ea644bfe0ddb1daa4e13, type: 2}
+      name: No Name
+    second: {fileID: 2100000, guid: 58588c8434101714b8ae7659bfba451d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -90,7 +88,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
