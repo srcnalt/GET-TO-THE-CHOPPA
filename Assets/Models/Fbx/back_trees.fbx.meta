@@ -1,24 +1,15 @@
 fileFormatVersion: 2
-guid: b5f0e0bd24e974440afdb3ad4eea18c9
-timeCreated: 1512222224
+guid: ee883d8220c26544a92cb0f2903e8eda
+timeCreated: 1512239570
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Collider
-    100004: Cylinder
     400000: //RootNode
-    400002: Collider
-    400004: Cylinder
     2300000: //RootNode
-    2300002: Collider
-    2300004: Cylinder
     3300000: //RootNode
-    3300002: Collider
-    3300004: Cylinder
-    4300000: Cylinder
-    4300002: Collider
+    4300000: Plane
   externalObjects:
   - first:
       type: UnityEngine:Material

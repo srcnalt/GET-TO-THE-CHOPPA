@@ -1,30 +1,23 @@
 fileFormatVersion: 2
-guid: b5f0e0bd24e974440afdb3ad4eea18c9
-timeCreated: 1512222224
+guid: 5cff973d7ad35764da350e131d3d8551
+timeCreated: 1512238124
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Collider
-    100004: Cylinder
     400000: //RootNode
-    400002: Collider
-    400004: Cylinder
     2300000: //RootNode
-    2300002: Collider
-    2300004: Cylinder
     3300000: //RootNode
-    3300002: Collider
-    3300004: Cylinder
-    4300000: Cylinder
-    4300002: Collider
+    4300000: Plane
+    7400000: Default Take
+    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 489e53182030bcf4e998adf23d2fe5ee, type: 2}
+      name: None__plant_1_png
+    second: {fileID: 2100000, guid: d5e6f57403f945746bea373dc64ae656, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -96,7 +89,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
