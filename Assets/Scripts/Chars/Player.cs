@@ -28,12 +28,12 @@ public class Player : Character, Character.IDamageable
 
     private void PlayerControls()
     {
-        if (Input.GetKey(KeyCode.A)) inputVec.x = 1;
-        else if (Input.GetKey(KeyCode.D)) inputVec.x = -1;
+        if (Input.GetKey(KeyCode.A)) inputVec.x = -1;
+        else if (Input.GetKey(KeyCode.D)) inputVec.x = 1;
         else inputVec.x = 0;
 
-        if (Input.GetKey(KeyCode.S)) inputVec.y = 1;
-        else if (Input.GetKey(KeyCode.W)) inputVec.y = -1;
+        if (Input.GetKey(KeyCode.S)) inputVec.y = -1;
+        else if (Input.GetKey(KeyCode.W)) inputVec.y = 1;
         else inputVec.y = 0;
 
         if (inputVec.magnitude > 1) inputVec = inputVec.normalized;
@@ -44,7 +44,7 @@ public class Player : Character, Character.IDamageable
         pitch += (-Input.GetAxisRaw("Mouse Y") * GameSettings.MOUSE_SENSITIVITY);
         pitch = Mathf.Clamp(pitch, -85f, +85f);
 
-        Quaternion camRot = Quaternion.Euler(0, yaw, 0);
-        velocity += camRot * new Vector3(inputVec.x, 0, inputVec.y) * maxSpeed * Time.deltaTime;
+        transform.Rotate(Vector3.up * yaw * Time.deltaTime);
+        velocity += transform.localRotation * new Vector3(inputVec.x, 0, inputVec.y) * maxSpeed * Time.deltaTime;
     }
 }

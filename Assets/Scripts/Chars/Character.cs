@@ -53,13 +53,6 @@ public abstract class Character : MonoBehaviour
         else velocity += Physics.gravity * Time.deltaTime;
     }
 
-    protected virtual void LateUpdate()
-    {
-        Vector3 newRot = transform.eulerAngles;
-        newRot.y = GameManager.Instance.PlayerCamera.Camera.transform.eulerAngles.y;
-        transform.eulerAngles = newRot;
-    }
-
 }
 
 
