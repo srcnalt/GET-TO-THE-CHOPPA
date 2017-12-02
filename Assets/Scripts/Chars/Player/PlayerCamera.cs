@@ -63,6 +63,8 @@ public class PlayerCamera : MonoBehaviour
     private void Start()
     {
         SetTarget(GameManager.Instance.Player.transform);
+        GetPitch = () => GameManager.Instance.Player.Pitch;
+        GetAiming = () => GameManager.Instance.Player.IsAiming;
     }
 
     private void LateUpdate()

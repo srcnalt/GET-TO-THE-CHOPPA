@@ -137,6 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d25f3a0a204ca5489bb5f9316223642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  maxSpeed: 15
+  velocityDamping: 5
+  painSounds: []
+  deathSounds: []
+  jumpSounds: []
 --- !u!143 &143590216439697748
 CharacterController:
   m_ObjectHideFlags: 1
