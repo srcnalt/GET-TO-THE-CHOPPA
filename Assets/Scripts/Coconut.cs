@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Coconut : MonoBehaviour
 {
-    public GameObject explosion;
+    [SerializeField]
+    private GameObject explosion;
 
     private float farArea = 2;
     private float farDamageMultiplier = 75;
@@ -12,8 +13,6 @@ public class Coconut : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Instantiate(explosion, transform.position, Quaternion.identity, transform);
-
-        Invoke("DestroyCoconut", 2);
 
         Collider[] colls = Physics.OverlapSphere(transform.position, farArea);
 
@@ -24,12 +23,10 @@ public class Coconut : MonoBehaviour
                 float distance = Vector3.Distance(coll.transform.position, transform.position);
 
                 float damage = 1 / distance * farDamageMultiplier;
-            }
+            }       
         }
+
+        Destroy(this.gameObject, 2f);
     }
 
-    private void DestroyCoconut()
-    {
-        Destroy(this.gameObject);
-    }
 }

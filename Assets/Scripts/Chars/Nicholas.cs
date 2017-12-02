@@ -8,5 +8,6 @@ public class Nicholas : Character
     public void Release()
     {
         transform.SetParent(null);
+
     }
 }
