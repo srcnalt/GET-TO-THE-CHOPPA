@@ -19,7 +19,11 @@ public class PlayerGameplayController : MonoBehaviour
             {
                 case Nicholas.State.Released:
                 case Nicholas.State.Wandering:
-                    selectedNicholas = nicholas;
+                    var heading = nicholas.transform.position - transform.position;
+                    float dot = Vector3.Dot(heading, transform.forward);
+
+                    if (dot > 0f) selectedNicholas = nicholas;
+
                     break;
             }
         }

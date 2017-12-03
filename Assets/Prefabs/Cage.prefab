@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 114574717677026256}
   - component: {fileID: 195576488406339194}
   - component: {fileID: 65392148864364976}
+  - component: {fileID: 143363591384269964}
   m_Layer: 0
   m_Name: Nicholas
   m_TagString: Untagged
@@ -1197,6 +1198,23 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.059722424, y: -0.14855069, z: -0.05950439}
     m_Extent: {x: 2.5808663, y: 1.0656486, z: 1.4457642}
   m_DirtyAABB: 0
+--- !u!143 &143363591384269964
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1544098705275728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 10
+  m_Radius: 2
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!195 &195576488406339194
 NavMeshAgent:
   m_ObjectHideFlags: 1

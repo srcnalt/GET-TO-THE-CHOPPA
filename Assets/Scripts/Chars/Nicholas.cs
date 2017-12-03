@@ -177,7 +177,7 @@ public class Nicholas : Character
         EnableMovement(true);
 
         float startedFollowingTime = Time.time;
-        float timeAfterToLoseInterest = Random.Range(3f, 10f);
+        float timeAfterToLoseInterest = Random.Range(5f, 15f);
 
         while (CurrentState == State.Following)
         {
