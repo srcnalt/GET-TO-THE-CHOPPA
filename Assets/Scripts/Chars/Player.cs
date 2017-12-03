@@ -27,6 +27,11 @@ public class Player : Character, IDamageable
         _animator = GetComponentInChildren<Animator>();
     }
 
+    private void Start()
+    {
+        yaw = transform.rotation.eulerAngles.y % 360;
+    }
+
     protected override void Update()
     {
         PlayerControls();
