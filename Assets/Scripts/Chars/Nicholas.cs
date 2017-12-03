@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class Nicholas : Character
 {
-    private const float CloseEnoughDistance = 0.5f;
+    private const float CloseEnoughDistance = 0.25f;
 
     public enum State
     {
@@ -33,6 +33,7 @@ public class Nicholas : Character
     State currentState = State.None;
 
     private NavMeshAgent _navMeshAgent;
+    private Animator _animator;
 
     public State CurrentState
     {
@@ -51,6 +52,7 @@ public class Nicholas : Character
     {
         CurrentState = State.Captured;
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     public void Release()
@@ -108,7 +110,13 @@ public class Nicholas : Character
     private IEnumerator ReleasedRoutine()
     {
         yield return new WaitForSeconds(1f);
+
         _navMeshAgent.SetDestination(transform.position + transform.forward * 3f);
+
+        EnableMovement(true);
+        yield return new WaitUntil(() => IsCloseEnough());
+        EnableMovement(false);
+
         yield return new WaitForSeconds(3f);
         CurrentState = State.Wandering;
     }
@@ -117,15 +125,14 @@ public class Nicholas : Character
     {
         while (CurrentState == State.Wandering)
         {
-            _navMeshAgent.isStopped = false;
-
             Vector3 destinationPoint;
             RandomPoint(transform.position, 10f, out destinationPoint);
 
             _navMeshAgent.SetDestination(destinationPoint);
 
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, destinationPoint) <= CloseEnoughDistance);
-            _navMeshAgent.isStopped = true;
+            EnableMovement(true);
+            yield return new WaitUntil(() => IsCloseEnough());
+            EnableMovement(false);
 
             yield return new WaitForSeconds(3f);
         }
@@ -145,6 +152,17 @@ public class Nicholas : Character
         }
         result = Vector3.zero;
         return false;
+    }
+
+    private bool IsCloseEnough()
+    {
+        return Vector3.Distance(transform.position, _navMeshAgent.destination) <= CloseEnoughDistance;
+    }
+
+    private void EnableMovement(bool flag)
+    {
+        _animator.SetBool("IsRunning", flag);
+        _navMeshAgent.isStopped = !flag;
     }
 
 }
