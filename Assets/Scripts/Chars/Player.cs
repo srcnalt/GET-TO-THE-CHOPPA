@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player : Character, IDamageable
+public class Player : GoodGuy, IDamageable
 {
     [SerializeField]
     private WeaponBase[] weapons;
@@ -72,6 +72,7 @@ public class Player : Character, IDamageable
         transform.localRotation = Quaternion.Euler(0, yaw, 0);
         velocity += transform.localRotation * new Vector3(inputVec.x, 0, inputVec.y) * maxSpeed * Time.deltaTime;
     }
+
     public void ApplyDamage(float dmg)
     {
         throw new System.NotImplementedException();

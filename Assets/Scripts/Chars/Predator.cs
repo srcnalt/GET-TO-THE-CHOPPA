@@ -1,20 +1,50 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Predator : Character, IDamageable
+public class Predator : BadGuy, IDamageable
 {
+    public enum State
+    {
+        None,
+        SearchingForVictim,
+        Attacking
+    }
+
     private const float CloseEnoughShootDistance = 15f;
 
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
+
+    private GoodGuy target;
+    private State currentState = State.None;
+
+    public State CurrentState
+    {
+        get { return currentState; }
+
+        private set
+        {
+            if (value != currentState)
+            {
+                State oldState = currentState;
+                currentState = value;
+                OnStateChanged(oldState, currentState);
+            }
+        }
+    }
 
     protected override void Awake()
     {
         base.Awake();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
+    }
+
+
+    private void Start()
+    {
+        CurrentState = State.SearchingForVictim;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,10 +59,89 @@ public class Predator : Character, IDamageable
         }
     }
 
+    private void OnStateChanged(State oldState, State newState)
+    {
+        switch (newState)
+        {
+            case State.SearchingForVictim:
+                StartCoroutine(SearchingRoutine());
+                break;
+
+            case State.Attacking:
+                Debug.Log("Attacking poor victim: " + target);
+                StartCoroutine(AttackingRoutine());
+                break;
+
+        }
+    }
+
+    private IEnumerator SearchingRoutine()
+    {
+        while (CurrentState == State.SearchingForVictim)
+        {
+            target = FindCloseEnoughTarget();
+
+            if (target != null)
+            {
+                CurrentState = State.Attacking;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator AttackingRoutine()
+    {
+        yield return null;
+    }
+
+
+    private GoodGuy FindCloseEnoughTarget()
+    {
+        GoodGuy[] goodGuys = GameManager.Instance.TargetableGoodGuys;
+
+        //Debug.Log("GoodGuys: "+goodGuys.Length);
+
+        float closestDistance = float.PositiveInfinity;
+        GoodGuy result = null;
+
+        for (int i = 0; i < goodGuys.Length; i++)
+        {
+            GoodGuy goodGuy = goodGuys[i];
+            float distance;
+
+            if (IsCloseEnough(goodGuy.transform.position, out distance))
+            {
+                Debug.Log(distance);
+
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    result = goodGuy;
+                }
+            }
+
+        }
+
+        return result;
+    }
+
+    private bool IsCloseEnough(Vector3 pos, out float dist)
+    {
+        Vector3 a = pos;
+        a.y = 0;
+
+        Vector3 b = transform.position;
+        b.y = 0;
+
+        dist = Vector3.Distance(a, b);
+
+        return dist <= CloseEnoughShootDistance;
+    }
+
     public void ApplyDamage(float dmg)
     {
         health -= dmg;
-
         if (health <= 0f) Die();
     }
 

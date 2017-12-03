@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class Nicholas : Character
+public class Nicholas : GoodGuy
 {
     private const float CloseEnoughDistance = 0.5f;
     private const float CloseEnoughDistanceFollow = 1.5f;
