@@ -933,7 +933,7 @@ MonoBehaviour:
   damage: 25
   refireRate: 5
   fireFrame: 0
-  projectilePrefab: {fileID: 1339645519295480, guid: 1b0aed8a7ad1cd24c9f234f0d165b69a,
+  projectilePrefab: {fileID: 1363886298940406, guid: 1b0aed8a7ad1cd24c9f234f0d165b69a,
     type: 2}
   projectileEjector: {fileID: 4407045972934304}
 --- !u!114 &114461439645205286

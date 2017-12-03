@@ -9,7 +9,7 @@ public class WeaponRifle : WeaponBase
     [SerializeField]
     protected Transform projectileEjector;
 
-    private float bulletThrust = 5f;
+    private float bulletThrust = 15f;
 
     public override void Fire(Character character)
     {

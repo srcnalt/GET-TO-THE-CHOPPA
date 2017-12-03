@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PalmTree : MonoBehaviour
 {
-    public List<Rigidbody> coconuts;
+    [SerializeField]
+    private List<Rigidbody> coconuts;
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Yo");
-
         Destroy(collision.gameObject);
 
         if (coconuts.Count > 0)
