@@ -98,12 +98,33 @@ public class Predator : BadGuy, IDamageable
     {
         while (currentState == State.Attacking)
         {
-            //if (IsCloseEnoughToTarget()) yield return Shoot();
+            if (IsCloseEnoughToTarget())
+            {
+                EnableMovement(false, true);
 
-            predatorGun.FireAtTarget(this, target.transform);
+                //Vector3 lookAtPos = new Vector3(
+                //    target.transform.position.x,
+                //    transform.position.y,
+                //    target.transform.position.z
+                //);
 
-            yield return new WaitForSeconds(2f);
+                //transform.LookAt(lookAtPos);
+
+                if (predatorGun.CanFire()) ShootAtTarget();
+            }
+            else
+            {
+                _navMeshAgent.SetDestination(target.transform.position);
+                EnableMovement(true);
+            }
+
+            yield return null;
         }
+    }
+
+    private void ShootAtTarget()
+    {
+        predatorGun.FireAtTarget(this, target.transform);
     }
 
     private GoodGuy FindCloseEnoughTarget()
@@ -166,6 +187,15 @@ public class Predator : BadGuy, IDamageable
     {
         _animator.SetBool("IsDead", true);
         CurrentState = State.Dead;
+    }
+
+    private void EnableMovement(bool flag, bool stopImmediately = false)
+    {
+        //Debug.LogFormat(  "EnableMovement flag: {0} immeadiate?: {1}", flag, immeadiateStop);
+
+        if (!flag && stopImmediately) _navMeshAgent.velocity = Vector3.zero;
+        _animator.SetBool("IsRunning", flag);
+        _navMeshAgent.isStopped = !flag;
     }
 
 }
