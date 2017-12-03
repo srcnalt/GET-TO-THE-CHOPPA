@@ -406,6 +406,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1798757455599792
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4516643650829974}
+  - component: {fileID: 114407823807726330}
+  m_Layer: 0
+  m_Name: PredatorGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1803924117011548
 GameObject:
   m_ObjectHideFlags: 1
@@ -732,6 +748,19 @@ Transform:
   m_Father: {fileID: 4025012926072462}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4516643650829974
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798757455599792}
+  m_LocalRotation: {x: 0.6506156, y: -0.7347846, z: -0.14226326, w: 0.12865517}
+  m_LocalPosition: {x: -0.009395751, y: 0.0075603533, z: -0.004707436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4903914073001222}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 100, y: 90, z: 90}
 --- !u!4 &4522243316804016
 Transform:
   m_ObjectHideFlags: 1
@@ -870,6 +899,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 1, z: 1}
   m_Children:
   - {fileID: 4558572398320302}
+  - {fileID: 4516643650829974}
   m_Father: {fileID: 4384728566921400}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -949,6 +979,25 @@ MonoBehaviour:
   painSounds: []
   deathSounds: []
   jumpSounds: []
+  predatorGun: {fileID: 114407823807726330}
+--- !u!114 &114407823807726330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798757455599792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d063991719879a49b359383d0ec3173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireSound: {fileID: 0}
+  damage: 255
+  refireRate: 5
+  fireFrame: 0
+  projectilePrefab: {fileID: 1729076484128580, guid: 078076bfe0416494ea8204f409c3d7c2,
+    type: 2}
+  projectileEjector: {fileID: 4516643650829974}
 --- !u!137 &137537081495631314
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

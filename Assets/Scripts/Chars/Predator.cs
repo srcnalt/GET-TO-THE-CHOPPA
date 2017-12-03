@@ -11,13 +11,17 @@ public class Predator : BadGuy, IDamageable
         Attacking
     }
 
-    private const float CloseEnoughShootDistance = 15f;
+    private const float CloseEnoughDetectionDistance = 15f;
+    private const float CloseEnoughShootDistance = 25f;
 
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
 
     private GoodGuy target;
     private State currentState = State.None;
+
+    [SerializeField]
+    private PredatorGun predatorGun;
 
     public State CurrentState
     {
@@ -92,9 +96,15 @@ public class Predator : BadGuy, IDamageable
 
     private IEnumerator AttackingRoutine()
     {
-        yield return null;
-    }
+        while (currentState == State.Attacking)
+        {
+            //if (IsCloseEnoughToTarget()) yield return Shoot();
 
+            predatorGun.FireAtTarget(this, target.transform);
+
+            yield return new WaitForSeconds(2f);
+        }
+    }
 
     private GoodGuy FindCloseEnoughTarget()
     {
@@ -126,6 +136,12 @@ public class Predator : BadGuy, IDamageable
         return result;
     }
 
+    private bool IsCloseEnoughToTarget()
+    {
+        float dist;
+        return IsCloseEnough(target.transform.position, out dist);
+    }
+
     private bool IsCloseEnough(Vector3 pos, out float dist)
     {
         Vector3 a = pos;
@@ -136,7 +152,8 @@ public class Predator : BadGuy, IDamageable
 
         dist = Vector3.Distance(a, b);
 
-        return dist <= CloseEnoughShootDistance;
+        float tresholdDistance = CurrentState == State.Attacking ? CloseEnoughShootDistance : CloseEnoughDetectionDistance;
+        return dist <= tresholdDistance;
     }
 
     public void ApplyDamage(float dmg)

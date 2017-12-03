@@ -16685,11 +16685,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 143382248397236100, guid: 6fa3f4b2f2ff2ca49b08b36ccb677707,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6fa3f4b2f2ff2ca49b08b36ccb677707, type: 2}
   m_IsPrefabParent: 0
@@ -21824,10 +21819,6 @@ Prefab:
     - target: {fileID: 400000, guid: d01e571d2d231d343b9958470948da3c, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: d01e571d2d231d343b9958470948da3c, type: 2}
-      propertyPath: cursorLockMode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d01e571d2d231d343b9958470948da3c, type: 2}

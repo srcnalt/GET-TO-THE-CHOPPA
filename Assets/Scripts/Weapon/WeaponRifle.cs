@@ -1,14 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponRifle : WeaponBase
+public class WeaponRifle : WeaponRangedProjectile
 {
-    [SerializeField]
-    protected GameObject projectilePrefab;
-
-    [SerializeField]
-    protected Transform projectileEjector;
-
     private float bulletThrust = 15f;
 
     public override void Fire(Character character)
