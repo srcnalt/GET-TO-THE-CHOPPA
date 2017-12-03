@@ -2,6 +2,9 @@
 
 public class Player : Character, Character.IDamageable
 {
+    [SerializeField]
+    private WeaponBase[] weapons;
+
     private Vector2 inputVec;
     private float yaw;
     private float pitch;
@@ -11,6 +14,11 @@ public class Player : Character, Character.IDamageable
     public float Yaw { get { return yaw; } }
     public float Pitch { get { return pitch; } }
     public bool IsAiming { get; private set; }
+
+    private WeaponBase CurrentActiveWeapon
+    {
+        get { return weapons[0]; }
+    }
 
     protected override void Awake()
     {
@@ -45,6 +53,15 @@ public class Player : Character, Character.IDamageable
 
         pitch += (-Input.GetAxisRaw("Mouse Y") * GameSettings.MOUSE_SENSITIVITY);
         pitch = Mathf.Clamp(pitch, -85f, +85f);
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            if (CurrentActiveWeapon.FireFrame + CurrentActiveWeapon.RefireRate <= Time.frameCount)
+            {
+                //Shoot
+                GameCrosshairUI.Instance.TriggerFX();
+            }
+        }
 
         //transform.Rotate(Vector3.up * yaw * Time.deltaTime);
         transform.localRotation = Quaternion.Euler(0, yaw, 0);
