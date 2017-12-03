@@ -1,42 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponRifle : WeaponRanged
+public class WeaponRifle : WeaponBase
 {
-    public override void Fx()
+    [SerializeField]
+    protected GameObject projectilePrefab;
+
+    [SerializeField]
+    protected Transform projectileEjector;
+
+    private float bulletThrust = 5f;
+
+    public override void Fire(Character character)
     {
-        //Vector3 pos;
-        //Quaternion rot;
-        //PlayerCamera.instance.CalculateCameraAimTransform(entity.transform, entity.GetState<IPlayerState>().pitch, out pos, out rot);
+        Vector3 pos;
+        Quaternion rot;
 
-        //Ray r = new Ray(pos, rot * Vector3.forward);
-        //RaycastHit rh;
+        Player player = (Player) character;
 
-        //if (Physics.Raycast(r, out rh) && impactPrefab)
-        //{
-        //    var en = rh.transform.GetComponent<BoltEntity>();
-        //    var hit = GameObject.Instantiate(impactPrefab, rh.point, Quaternion.LookRotation(rh.normal)) as GameObject;
+        PlayerCamera.Instance.CalculateCameraAimTransform(character.transform, player.Pitch, out pos, out rot);
 
-        //    if (en)
-        //    {
-        //        hit.GetComponent<RandomSound>().enabled = false;
-        //    }
+        GameObject projectile = GameObject.Instantiate(projectilePrefab, projectileEjector.transform.position, rot);
+        Rigidbody rigidBody = projectile.GetComponent<Rigidbody>();
 
-        //    if (trailPrefab)
-        //    {
-        //        var trailGo = GameObject.Instantiate(trailPrefab, muzzleFlash.position, Quaternion.identity) as GameObject;
-        //        var trail = trailGo.GetComponent<LineRenderer>();
-
-        //        trail.SetPosition(0, muzzleFlash.position);
-        //        trail.SetPosition(1, rh.point);
-        //    }
-        //}
-
-        //GameObject go = (GameObject)GameObject.Instantiate(shellPrefab, shellEjector.position, shellEjector.rotation);
-        //go.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 2, ForceMode.VelocityChange);
-        //go.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-32f, +32f), Random.Range(-32f, +32f), Random.Range(-32f, +32f)), ForceMode.VelocityChange);
-
-        //// show flash
-        //muzzleFlash.gameObject.SetActive(true);
+        rigidBody.AddForce(projectile.transform.forward * bulletThrust, ForceMode.Impulse);
     }
 }

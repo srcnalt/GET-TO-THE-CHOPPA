@@ -933,13 +933,9 @@ MonoBehaviour:
   damage: 25
   refireRate: 5
   fireFrame: 0
-  shellPrefab: {fileID: 0}
-  impactPrefab: {fileID: 0}
-  trailPrefab: {fileID: 0}
-  muzzleFlash: {fileID: 0}
-  shellEjector: {fileID: 4407045972934304}
-  dryFireSound: {fileID: 0}
-  reloadSound: {fileID: 0}
+  projectilePrefab: {fileID: 1339645519295480, guid: 1b0aed8a7ad1cd24c9f234f0d165b69a,
+    type: 2}
+  projectileEjector: {fileID: 4407045972934304}
 --- !u!114 &114461439645205286
 MonoBehaviour:
   m_ObjectHideFlags: 1

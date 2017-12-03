@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using Sacristan.Utils;
 
-public class PlayerCamera : MonoBehaviour
+public class PlayerCamera : Singleton<PlayerCamera>
 {
     [SerializeField]
     Transform cam;
@@ -54,8 +55,9 @@ public class PlayerCamera : MonoBehaviour
 
     #region MonoBehaviour
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(gameObject);
         _distance = runningDistance;
     }

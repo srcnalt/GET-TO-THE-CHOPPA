@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public abstract class WeaponBase : MonoBehaviour
 {
@@ -18,8 +17,7 @@ public abstract class WeaponBase : MonoBehaviour
     public int RefireRate { get { return refireRate; } }
     public int FireFrame { get { return fireFrame; } }
 
-
-    public virtual void Fx()
+    public virtual void Fire(Character character)
     {
 
     }
