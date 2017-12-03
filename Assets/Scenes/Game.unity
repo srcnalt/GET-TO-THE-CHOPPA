@@ -14725,11 +14725,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114574717677026256, guid: bec677ad24b97204097fd4500a2ffcfc,
-        type: 2}
-      propertyPath: facialExpressionRenderer
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bec677ad24b97204097fd4500a2ffcfc, type: 2}
   m_IsPrefabParent: 0

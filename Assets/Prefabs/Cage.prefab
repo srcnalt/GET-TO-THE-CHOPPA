@@ -1179,7 +1179,7 @@ MonoBehaviour:
   painSounds: []
   deathSounds: []
   jumpSounds: []
-  facialExpressionRenderer: {fileID: 0}
+  facialExpressionRenderer: {fileID: 137704311340279958}
   captured: {fileID: 2800000, guid: e4a841a29cacf324bbfafe2e9aabaaa8, type: 3}
   released: {fileID: 2800000, guid: f0b6d4dd21f088c489ea916042e0f4a3, type: 3}
   wandering: {fileID: 2800000, guid: 700a8f1da4895174bbc14a7d6b3ae65d, type: 3}
@@ -1216,7 +1216,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: aaf598de4eed02046b4c6add713428c5, type: 2}
+  - {fileID: 2100000, guid: 848062f11e1190642a45f263e4a30a46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
