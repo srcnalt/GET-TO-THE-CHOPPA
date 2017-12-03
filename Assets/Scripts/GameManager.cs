@@ -1,11 +1,16 @@
-﻿using UnityEngine;
-using Sacristan.Utils;
-using System.Collections;
+﻿using Sacristan.Utils;
+using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
 {
+    public delegate void EventHandler();
+    public event EventHandler OnNicholasSaved;
+
     private Player _player;
     private PlayerCamera _playerCamera;
+
+    private Nicholas[] _nicholases;
+    private List<Nicholas> savedNicholases = new List<Nicholas>();
 
     public Player Player
     {
@@ -23,6 +28,21 @@ public class GameManager : Singleton<GameManager>
             if (_playerCamera == null) _playerCamera = FindObjectOfType<PlayerCamera>();
             return _playerCamera;
         }
+    }
+
+    public int NicholasesTotal { get { return _nicholases.Length; } }
+    public int NicholasesSaved { get { return savedNicholases.Count; } }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _nicholases = FindObjectsOfType<Nicholas>();
+    }
+
+    public void NicholasSaved(Nicholas nicholas)
+    {
+        savedNicholases.Add(nicholas);
+        if (OnNicholasSaved != null) OnNicholasSaved.Invoke();
     }
 
 }

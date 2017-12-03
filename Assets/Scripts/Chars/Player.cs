@@ -19,16 +19,17 @@ public class Player : Character, IDamageable
     {
         get { return weapons[0]; }
     }
-
-	private void Start() {
-		yaw += transform.rotation.y % 360;
-	}
-
+		
     protected override void Awake()
     {
         base.Awake();
 
         _animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Start()
+    {
+        yaw = transform.rotation.eulerAngles.y % 360;
     }
 
     protected override void Update()
