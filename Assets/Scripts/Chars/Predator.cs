@@ -12,7 +12,7 @@ public class Predator : BadGuy, IDamageable
         Dead
     }
 
-    private const float CloseEnoughDetectionDistance = 15f;
+    private const float CloseEnoughDetectionDistance = 35f;
     private const float CloseEnoughShootDistance = 25f;
 
     private NavMeshAgent _navMeshAgent;
@@ -102,13 +102,13 @@ public class Predator : BadGuy, IDamageable
             {
                 EnableMovement(false, true);
 
-                //Vector3 lookAtPos = new Vector3(
-                //    target.transform.position.x,
-                //    transform.position.y,
-                //    target.transform.position.z
-                //);
+                Vector3 lookAtPos = new Vector3(
+                    target.transform.position.x,
+                    transform.position.y,
+                    target.transform.position.z
+                );
 
-                //transform.LookAt(lookAtPos);
+                transform.LookAt(lookAtPos);
 
                 if (predatorGun.CanFire()) ShootAtTarget();
             }

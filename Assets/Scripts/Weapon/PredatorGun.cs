@@ -2,10 +2,12 @@
 
 public class PredatorGun : WeaponRangedProjectile
 {
-    private float thrust = 7.5f;
+    private float thrust = 12f;
 
     public void FireAtTarget(Character character, Transform target)
     {
+        this.fireFrame = Time.frameCount;
+
         Vector3 dir = target.transform.position - transform.position;
         dir.Normalize();
 
@@ -18,12 +20,7 @@ public class PredatorGun : WeaponRangedProjectile
         rigidBody.AddForce(dir * thrust, ForceMode.Impulse);
 
         Destroy(projectile, 3f);
-
-        this.fireFrame = Time.frameCount;
     }
 
-    public bool CanFire()
-    {
-        return FireFrame + RefireRate <= Time.frameCount;
-    }
+
 }

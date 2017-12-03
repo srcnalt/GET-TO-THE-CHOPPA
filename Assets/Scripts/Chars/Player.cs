@@ -61,7 +61,7 @@ public class Player : GoodGuy, IDamageable
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (CurrentActiveWeapon.FireFrame + CurrentActiveWeapon.RefireRate <= Time.frameCount)
+            if (CurrentActiveWeapon.CanFire())
             {
                 GameUI.Instance.CrosshairUI.TriggerFX();
                 CurrentActiveWeapon.Fire(this);

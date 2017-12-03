@@ -7,6 +7,8 @@ public class WeaponRifle : WeaponRangedProjectile
 
     public override void Fire(Character character)
     {
+        this.fireFrame = Time.frameCount;
+
         Vector3 pos;
         Quaternion rot;
 

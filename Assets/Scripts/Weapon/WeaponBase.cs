@@ -22,4 +22,9 @@ public abstract class WeaponBase : MonoBehaviour
 
     }
 
+    public bool CanFire()
+    {
+        return FireFrame + RefireRate <= Time.frameCount;
+    }
+
 }
