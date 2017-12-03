@@ -2,7 +2,7 @@
 using System.Collections;
 using Sacristan.Utils;
 
-public class GameCrosshairUI : Singleton<GameCrosshairUI>
+public class GameCrosshairUI: MonoBehaviour
 {
     [SerializeField]
     private float pixelWidth = 4;

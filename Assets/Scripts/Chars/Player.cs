@@ -58,7 +58,7 @@ public class Player : Character, IDamageable
         {
             if (CurrentActiveWeapon.FireFrame + CurrentActiveWeapon.RefireRate <= Time.frameCount)
             {
-                GameCrosshairUI.Instance.TriggerFX();
+                GameUI.Instance.CrosshairUI.TriggerFX();
                 CurrentActiveWeapon.Fire(this);
             }
         }

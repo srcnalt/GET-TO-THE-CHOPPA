@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class Nicholas : Character
 {
-    private const float CloseEnoughDistance = 0.25f;
+    private const float CloseEnoughDistance = 0.5f;
     private const float CloseEnoughDistanceFollow = 1.5f;
 
     public enum State
@@ -131,23 +131,6 @@ public class Nicholas : Character
         CurrentState = State.Following;
     }
 
-    private IEnumerator FollowingRoutine()
-    {
-        _navMeshAgent.SetDestination(GameManager.Instance.Player.transform.position);
-        EnableMovement(true);
-
-        while (CurrentState == State.Following)
-        {
-            _navMeshAgent.SetDestination(GameManager.Instance.Player.transform.position);
-
-            EnableMovement(!IsCloseEnough(), true);
-
-            //Debug.Log(GetDistanceFromTarget());
-
-            yield return null;
-        }
-    }
-
     private IEnumerator WanderingRoutine()
     {
         while (CurrentState == State.Wandering)
@@ -161,7 +144,33 @@ public class Nicholas : Character
             yield return new WaitUntil(() => IsCloseEnough());
             EnableMovement(false);
 
-            yield return new WaitForSeconds(3f);
+            float idleTime = Random.Range(2f, 5f);
+            yield return new WaitForSeconds(idleTime);
+        }
+    }
+
+    private IEnumerator FollowingRoutine()
+    {
+        _navMeshAgent.SetDestination(GameManager.Instance.Player.transform.position);
+        EnableMovement(true);
+
+        float startedFollowingTime = Time.time;
+        float timeAfterToLoseInterest = Random.Range(3f, 10f);
+
+        while (CurrentState == State.Following)
+        {
+            if (startedFollowingTime + timeAfterToLoseInterest < Time.time)
+            {
+                EnableMovement(false);
+                _navMeshAgent.SetDestination(Vector3.zero);
+                CurrentState = State.Wandering;
+            }
+
+            _navMeshAgent.SetDestination(GameManager.Instance.Player.transform.position);
+
+            EnableMovement(!IsCloseEnough(), true);
+
+            yield return null;
         }
     }
 
@@ -212,11 +221,11 @@ public class Nicholas : Character
         return GetDistanceFromTarget() <= closeEnoughDistance;
     }
 
-    private void EnableMovement(bool flag, bool immeadiateStop=false)
+    private void EnableMovement(bool flag, bool stopImmediately = false)
     {
         //Debug.LogFormat("EnableMovement flag: {0} immeadiate?: {1}", flag, immeadiateStop);
 
-        if(!flag && immeadiateStop) _navMeshAgent.velocity = Vector3.zero;
+        if (!flag && stopImmediately) _navMeshAgent.velocity = Vector3.zero;
         _animator.SetBool("IsRunning", flag);
         _navMeshAgent.isStopped = !flag;
     }

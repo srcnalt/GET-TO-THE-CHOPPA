@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Sacristan.Utils;
+using System.Collections;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -23,4 +24,5 @@ public class GameManager : Singleton<GameManager>
             return _playerCamera;
         }
     }
+
 }
