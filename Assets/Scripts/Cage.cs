@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 
-public class Cage : MonoBehaviour
+public class Cage : MonoBehaviour, IDamageable
 {
+    private enum State
+    {
+        Undamaged,
+        Damaged
+    }
+
     [SerializeField]
     private int life;
 
@@ -20,20 +26,32 @@ public class Cage : MonoBehaviour
     [SerializeField]
     private Nicholas nicholas;
 
+    private State state = State.Undamaged;
+
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(collision.gameObject);
 
-        life -= Random.Range(5, 25);
+        float damage = Random.Range(5, 25);
 
-        if (life <= 0)
-        {
-            Instantiate(explosion, transform.position, Quaternion.identity, transform);
-            undamaged.SetActive(false);
-            damaged.SetActive(true);
-
-            nicholas.Release();
-        }
+        ApplyDamage(damage);
     }
 
+    public void ApplyDamage(float dmg)
+    {
+        life -= (int)dmg;
+
+        if (life <= 0 && state == State.Undamaged) Die();
+    }
+
+    public void Die()
+    {
+        state = State.Damaged;
+
+        Instantiate(explosion, transform.position, Quaternion.identity, transform);
+        undamaged.SetActive(false);
+        damaged.SetActive(true);
+
+        nicholas.Release();
+    }
 }

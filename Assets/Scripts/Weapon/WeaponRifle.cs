@@ -24,5 +24,7 @@ public class WeaponRifle : WeaponBase
         Rigidbody rigidBody = projectile.GetComponent<Rigidbody>();
 
         rigidBody.AddForce(projectile.transform.forward * bulletThrust, ForceMode.Impulse);
+
+        Destroy(projectile, 1f);
     }
 }

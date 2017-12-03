@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player : Character, Character.IDamageable
+public class Player : Character, IDamageable
 {
     [SerializeField]
     private WeaponBase[] weapons;

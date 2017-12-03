@@ -236,12 +236,11 @@ MonoBehaviour:
   pixelWidth: 4
   pixelHeight: 11
   minSpread: 11
-  maxSpread: 50
+  maxSpread: 35
   topRectTransform: {fileID: 224684840279165186}
   bottomRectTransform: {fileID: 224346595764970850}
   leftRectTransform: {fileID: 224873632982019382}
   rightRectTransform: {fileID: 224218064628779532}
-  currentSpreadPerc: 0
 --- !u!114 &114612021578539426
 MonoBehaviour:
   m_ObjectHideFlags: 1

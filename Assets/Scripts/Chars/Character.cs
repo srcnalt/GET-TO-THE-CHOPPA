@@ -1,15 +1,7 @@
 ﻿using UnityEngine;
 
-public abstract class Character : MonoBehaviour
+public abstract class Character : Pawn
 {
-    #region Interfaces
-    public interface IDamageable
-    {
-        void ApplyDamage(float dmg);
-        void Die();
-    }
-    #endregion
-
     [SerializeField]
     protected float health = 100;
 

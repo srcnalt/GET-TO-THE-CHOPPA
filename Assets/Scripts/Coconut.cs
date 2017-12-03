@@ -18,12 +18,16 @@ public class Coconut : MonoBehaviour
 
         foreach (Collider coll in colls)
         {
-            if(coll.tag == "Enemy")
+            Pawn pawn = coll.GetComponent<Pawn>();
+
+            if (pawn is IDamageable)
             {
                 float distance = Vector3.Distance(coll.transform.position, transform.position);
-
                 float damage = 1 / distance * farDamageMultiplier;
-            }       
+
+                IDamageable damageablePawn = (IDamageable)pawn;
+                damageablePawn.ApplyDamage(damage);
+            }
         }
 
         Destroy(this.gameObject, 2f);
