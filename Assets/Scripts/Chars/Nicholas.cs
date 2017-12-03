@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class Nicholas : Character
 {
     private const float CloseEnoughDistance = 0.25f;
+    private const float CloseEnoughDistanceFollow = 1.5f;
 
     public enum State
     {
@@ -35,6 +36,7 @@ public class Nicholas : Character
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
 
+    #region Properties
     public State CurrentState
     {
         get { return currentState; }
@@ -47,13 +49,18 @@ public class Nicholas : Character
             }
         }
     }
+    #endregion
 
+    #region Mono
     private void Start()
     {
         CurrentState = State.Captured;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
     }
+    #endregion
+
+    #region Public Methods
 
     public void Release()
     {
@@ -61,6 +68,9 @@ public class Nicholas : Character
         CurrentState = State.Released;
     }
 
+    #endregion
+
+    #region State Handling
     private void OnStateChanged(State newState)
     {
         switch (newState)
@@ -100,12 +110,12 @@ public class Nicholas : Character
     private void HandleFollowing()
     {
         ChangeFacialExpression(following);
+        StartCoroutine(FollowingRoutine());
     }
 
-    private void ChangeFacialExpression(Texture2D expressionTex)
-    {
-        facialExpressionRenderer.material.SetTexture("_MainTex", expressionTex);
-    }
+    #endregion
+
+    #region State Routines
 
     private IEnumerator ReleasedRoutine()
     {
@@ -118,7 +128,24 @@ public class Nicholas : Character
         EnableMovement(false);
 
         yield return new WaitForSeconds(3f);
-        CurrentState = State.Wandering;
+        CurrentState = State.Following;
+    }
+
+    private IEnumerator FollowingRoutine()
+    {
+        _navMeshAgent.SetDestination(GameManager.Instance.Player.transform.position);
+        EnableMovement(true);
+
+        while (CurrentState == State.Following)
+        {
+            _navMeshAgent.SetDestination(GameManager.Instance.Player.transform.position);
+
+            EnableMovement(!IsCloseEnough(), true);
+
+            //Debug.Log(GetDistanceFromTarget());
+
+            yield return null;
+        }
     }
 
     private IEnumerator WanderingRoutine()
@@ -138,6 +165,13 @@ public class Nicholas : Character
         }
     }
 
+    #endregion
+
+    private void ChangeFacialExpression(Texture2D expressionTex)
+    {
+        facialExpressionRenderer.material.SetTexture("_MainTex", expressionTex);
+    }
+
     private bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         for (int i = 0; i < 30; i++)
@@ -154,13 +188,35 @@ public class Nicholas : Character
         return false;
     }
 
-    private bool IsCloseEnough()
+
+    private float GetDistanceFrom(Vector3 target)
     {
-        return Vector3.Distance(transform.position, _navMeshAgent.destination) <= CloseEnoughDistance;
+        Vector3 a = transform.position;
+        a.y = 0;
+
+        Vector3 b = _navMeshAgent.destination;
+        b.y = 0;
+        return Vector3.Distance(a, b);
+
     }
 
-    private void EnableMovement(bool flag)
+    private float GetDistanceFromTarget()
     {
+        return GetDistanceFrom(_navMeshAgent.destination);
+
+    }
+
+    private bool IsCloseEnough()
+    {
+        float closeEnoughDistance = CurrentState == State.Following ? CloseEnoughDistanceFollow : CloseEnoughDistance;
+        return GetDistanceFromTarget() <= closeEnoughDistance;
+    }
+
+    private void EnableMovement(bool flag, bool immeadiateStop=false)
+    {
+        //Debug.LogFormat("EnableMovement flag: {0} immeadiate?: {1}", flag, immeadiateStop);
+
+        if(!flag && immeadiateStop) _navMeshAgent.velocity = Vector3.zero;
         _animator.SetBool("IsRunning", flag);
         _navMeshAgent.isStopped = !flag;
     }
