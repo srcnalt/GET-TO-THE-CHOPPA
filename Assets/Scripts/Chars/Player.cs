@@ -6,9 +6,18 @@ public class Player : Character, Character.IDamageable
     private float yaw;
     private float pitch;
 
+    private Animator _animator;
+
     public float Yaw { get { return yaw; } }
     public float Pitch { get { return pitch; } }
     public bool IsAiming { get; private set; }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _animator = GetComponentInChildren<Animator>();
+    }
 
     protected override void Update()
     {
@@ -27,6 +36,9 @@ public class Player : Character, Character.IDamageable
         else inputVec.y = 0;
 
         if (inputVec.magnitude > 1) inputVec = inputVec.normalized;
+
+        bool isRunningInput = inputVec.sqrMagnitude > float.Epsilon;
+        _animator.SetBool("IsRunning", isRunningInput);
 
         yaw += (Input.GetAxisRaw("Mouse X") * GameSettings.MOUSE_SENSITIVITY);
         yaw %= 360f;
