@@ -2,6 +2,7 @@
 {
     public static readonly string[] NicholasSavedPuns = new string[]
     {
+        "NICHOLAS CAGE!",
         "Thank You, Arnold!",
         "Ty! Never thougt I gonna be Caged!",
         "Bananas!",
