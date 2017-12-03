@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireSound: {fileID: 0}
-  damage: 25
+  damage: 15
   refireRate: 5
   fireFrame: 0
   projectilePrefab: {fileID: 1363886298940406, guid: 1b0aed8a7ad1cd24c9f234f0d165b69a,

@@ -8,7 +8,8 @@ public class Predator : BadGuy, IDamageable
     {
         None,
         SearchingForVictim,
-        Attacking
+        Attacking,
+        Dead
     }
 
     private const float CloseEnoughDetectionDistance = 15f;
@@ -53,13 +54,12 @@ public class Predator : BadGuy, IDamageable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Projectile>())
+        Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+
+        if (projectile != null)
         {
-            Destroy(collision.gameObject);
-
-            float damage = Random.Range(5, 25);
-
-            ApplyDamage(damage);
+            ApplyDamage(projectile.Damage);
+            Destroy(projectile.gameObject);
         }
     }
 
@@ -165,6 +165,7 @@ public class Predator : BadGuy, IDamageable
     public void Die()
     {
         _animator.SetBool("IsDead", true);
+        CurrentState = State.Dead;
     }
 
 }
