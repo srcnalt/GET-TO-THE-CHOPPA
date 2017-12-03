@@ -817,7 +817,7 @@ Transform:
   m_GameObject: {fileID: 1003830947781780}
   m_LocalRotation: {x: -0, y: -0.7515414, z: -0, w: 0.659686}
   m_LocalPosition: {x: 270.8, y: -90.67, z: 256.8}
-  m_LocalScale: {x: 1.0000007, y: 1, z: 1.0000007}
+  m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Children:
   - {fileID: 4331614484849246}
   - {fileID: 4739731381916608}
@@ -825,7 +825,7 @@ Transform:
   - {fileID: 4913232685132804}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -279.15698, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -190.56, z: 0}
 --- !u!4 &4565567415105950
 Transform:
   m_ObjectHideFlags: 1
@@ -1180,10 +1180,10 @@ MonoBehaviour:
   deathSounds: []
   jumpSounds: []
   facialExpressionRenderer: {fileID: 137704311340279958}
-  captured: {fileID: 2800000, guid: e4a841a29cacf324bbfafe2e9aabaaa8, type: 3}
-  released: {fileID: 2800000, guid: f0b6d4dd21f088c489ea916042e0f4a3, type: 3}
-  wandering: {fileID: 2800000, guid: 700a8f1da4895174bbc14a7d6b3ae65d, type: 3}
-  following: {fileID: 2800000, guid: 5f13e120d544f404e9734d37b64925e2, type: 3}
+  captured: {fileID: 2800000, guid: 5ffc40168f413c74d96461641431d63d, type: 3}
+  released: {fileID: 2800000, guid: 815a887ef6060f440a00f347b7c8894b, type: 3}
+  wandering: {fileID: 2800000, guid: 290b9fb52c195b84d86d91412ed95e87, type: 3}
+  following: {fileID: 2800000, guid: f21b2d10266dd9147acbd1f971c2cb3d, type: 3}
 --- !u!114 &114633234534491542
 MonoBehaviour:
   m_ObjectHideFlags: 1

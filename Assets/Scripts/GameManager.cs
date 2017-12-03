@@ -12,6 +12,8 @@ public class GameManager : Singleton<GameManager>
     private Nicholas[] _nicholases;
     private List<Nicholas> savedNicholases = new List<Nicholas>();
 
+    private List<GoodGuy> targetableGoodGuys = new List<GoodGuy>();
+
     public Player Player
     {
         get
@@ -30,6 +32,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public GoodGuy[] TargetableGoodGuys
+    {
+        get { return targetableGoodGuys.ToArray(); }
+    }
+
     public int NicholasesTotal { get { return _nicholases.Length; } }
     public int NicholasesSaved { get { return savedNicholases.Count; } }
 
@@ -37,6 +44,7 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         _nicholases = FindObjectsOfType<Nicholas>();
+        targetableGoodGuys.Add(Player);
     }
 
     public void NicholasSaved(Nicholas nicholas)

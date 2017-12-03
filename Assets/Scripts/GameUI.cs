@@ -17,7 +17,6 @@ public class GameUI : Singleton<GameUI>
 
     private GameCrosshairUI _crosshairUI;
 
-    private float removePunTime = 0f;
     private bool isPunBeingDisplayed = false;
 
     public GameCrosshairUI CrosshairUI

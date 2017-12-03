@@ -1,18 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponRifle : WeaponBase
+public class WeaponRifle : WeaponRangedProjectile
 {
-    [SerializeField]
-    protected GameObject projectilePrefab;
-
-    [SerializeField]
-    protected Transform projectileEjector;
-
     private float bulletThrust = 15f;
 
     public override void Fire(Character character)
     {
+        this.fireFrame = Time.frameCount;
+
         Vector3 pos;
         Quaternion rot;
 
@@ -21,6 +17,7 @@ public class WeaponRifle : WeaponBase
         PlayerCamera.Instance.CalculateCameraAimTransform(character.transform, player.Pitch, out pos, out rot);
 
         GameObject projectile = GameObject.Instantiate(projectilePrefab, projectileEjector.transform.position, rot);
+        projectile.GetComponent<Projectile>().Damage = damage;
         Rigidbody rigidBody = projectile.GetComponent<Rigidbody>();
 
         rigidBody.AddForce(projectile.transform.forward * bulletThrust, ForceMode.Impulse);

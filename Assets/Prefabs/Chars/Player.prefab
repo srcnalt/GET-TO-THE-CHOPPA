@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 4896515084711072}
   - component: {fileID: 95754316681551648}
   m_Layer: 0
-  m_Name: arnold (1)
+  m_Name: arnold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4479956715301500}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireSound: {fileID: 0}
-  damage: 25
+  damage: 15
   refireRate: 5
   fireFrame: 0
   projectilePrefab: {fileID: 1363886298940406, guid: 1b0aed8a7ad1cd24c9f234f0d165b69a,

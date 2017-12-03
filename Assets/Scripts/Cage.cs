@@ -30,13 +30,12 @@ public class Cage : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Projectile>())
+        Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+
+        if (projectile != null)
         {
-            Destroy(collision.gameObject);
-
-            float damage = Random.Range(5, 25);
-
-            ApplyDamage(damage);
+            ApplyDamage(projectile.Damage);
+            Destroy(projectile.gameObject);
         }
     }
 
