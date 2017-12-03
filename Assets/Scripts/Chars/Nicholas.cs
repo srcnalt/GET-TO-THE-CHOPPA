@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Nicholas : Character
 {
@@ -44,8 +45,9 @@ public class Nicholas : Character
         {
             if (currentState != value)
             {
+                State prevState = currentState;
                 currentState = value;
-                OnStateChanged(currentState);
+                OnStateChanged(prevState, currentState);
             }
         }
     }
@@ -58,9 +60,16 @@ public class Nicholas : Character
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
     }
+
+
     #endregion
 
     #region Public Methods
+
+    public void PleaseFollow()
+    {
+        CurrentState = State.Following;
+    }
 
     public void Release()
     {
@@ -71,8 +80,21 @@ public class Nicholas : Character
     #endregion
 
     #region State Handling
-    private void OnStateChanged(State newState)
+    private void OnStateChanged(State oldState, State newState)
     {
+        switch (oldState)
+        {
+            case State.Released:
+                StopCoroutine(ReleasedRoutine());
+                break;
+            case State.Wandering:
+                StopCoroutine(WanderingRoutine());
+                break;
+            case State.Following:
+                StopCoroutine(FollowingRoutine());
+                break;
+        }
+
         switch (newState)
         {
             case State.Captured:
@@ -128,7 +150,7 @@ public class Nicholas : Character
         EnableMovement(false);
 
         yield return new WaitForSeconds(3f);
-        CurrentState = State.Following;
+        CurrentState = State.Wandering;
     }
 
     private IEnumerator WanderingRoutine()
