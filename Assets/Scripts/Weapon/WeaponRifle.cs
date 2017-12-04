@@ -27,5 +27,6 @@ public class WeaponRifle : WeaponRangedProjectile
         rigidBody.AddForce(projectileObj.transform.forward * bulletThrust, ForceMode.Impulse);
 
         Destroy(projectileObj, 1f);
+        PlaySFXAtPos(projectileObj.transform.position);
     }
 }

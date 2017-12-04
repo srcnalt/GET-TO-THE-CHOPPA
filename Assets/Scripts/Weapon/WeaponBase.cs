@@ -3,7 +3,7 @@
 public abstract class WeaponBase : MonoBehaviour
 {
     [SerializeField]
-    protected AudioClip fireSound;
+    protected AudioClip[] fireSounds;
 
     [SerializeField]
     protected byte damage = 25;
@@ -25,6 +25,19 @@ public abstract class WeaponBase : MonoBehaviour
     public bool CanFire()
     {
         return FireFrame + RefireRate <= Time.frameCount;
+    }
+
+    public void PlaySFXAtPos(Vector3 pos)
+    {
+        int index = Random.Range(0, fireSounds.Length);
+        AudioClip audioClip = fireSounds[index];
+
+        GameObject sgxGo = new GameObject("sfx", typeof(AudioSource));
+        AudioSource sfx = sgxGo.GetComponent<AudioSource>();
+
+        sfx.PlayOneShot(audioClip);
+
+        Destroy(sgxGo, audioClip.length);
     }
 
 }
