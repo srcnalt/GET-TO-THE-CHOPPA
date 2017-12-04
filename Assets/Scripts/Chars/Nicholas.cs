@@ -160,7 +160,7 @@ public class Nicholas : GoodGuy, IDamageable
 
     private void HandleFollowing()
     {
-
+        ChangeFacialExpression(following);
         StartCoroutine(FollowingRoutine());
     }
 
