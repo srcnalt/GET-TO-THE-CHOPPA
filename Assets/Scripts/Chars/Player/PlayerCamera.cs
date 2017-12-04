@@ -58,7 +58,7 @@ public class PlayerCamera : Singleton<PlayerCamera>
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         _distance = runningDistance;
     }
 

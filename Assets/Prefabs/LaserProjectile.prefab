@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 54853807391734202}
   - component: {fileID: 114866849870471560}
   - component: {fileID: 65320239268929050}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LaserProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
