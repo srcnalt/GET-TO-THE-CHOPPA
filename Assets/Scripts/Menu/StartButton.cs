@@ -18,6 +18,7 @@ public class StartButton : MonoBehaviour
     public void MouseOver()
     {
         buttonAnimator.SetBool("Selected", true);
+        GetComponent<AudioSource>().Play();
     }
 
     public void MouseExit()
