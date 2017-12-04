@@ -75,7 +75,7 @@ public class Predator : BadGuy, IDamageable
                 break;
 
             case State.Attacking:
-                Debug.Log("Attacking poor victim: " + target);
+                //Debug.Log("Attacking poor victim: " + target);
                 StartCoroutine(AttackingRoutine());
                 break;
 
@@ -160,7 +160,7 @@ public class Predator : BadGuy, IDamageable
 
             if (IsCloseEnough(goodGuy.transform.position, out distance))
             {
-                Debug.Log(distance);
+                //Debug.Log(distance);
 
                 if (distance < closestDistance)
                 {
@@ -198,6 +198,7 @@ public class Predator : BadGuy, IDamageable
     {
         health -= dmg;
         if (health <= 0f && CurrentState != State.Dead) Die();
+        else HandleDamage();
     }
 
     public void Die()
@@ -217,4 +218,15 @@ public class Predator : BadGuy, IDamageable
         _navMeshAgent.isStopped = !flag;
     }
 
+
+    private void HandleDamage()
+    {
+        switch (CurrentState)
+        {
+            case State.SearchingForVictim:
+                target = GameManager.Instance.Player;
+                CurrentState = State.Attacking;
+                break;
+        }
+    }
 }
