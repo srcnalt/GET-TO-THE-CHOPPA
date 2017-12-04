@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WeaponRifle : WeaponRangedProjectile
 {
-    private float bulletThrust = 15f;
+    private float bulletThrust = 10f;
 
     public override void Fire(Character character)
     {

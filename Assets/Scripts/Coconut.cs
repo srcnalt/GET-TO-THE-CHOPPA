@@ -5,8 +5,8 @@ public class Coconut : MonoBehaviour
     [SerializeField]
     private GameObject explosion;
 
-    private float farArea = 2;
-    private float farDamageMultiplier = 75;
+    private float farArea = 5;
+    private float farDamageMultiplier = 30;
 
     private void OnCollisionEnter(Collision collision)
     {
