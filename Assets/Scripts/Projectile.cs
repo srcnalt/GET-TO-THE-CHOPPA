@@ -8,4 +8,9 @@ public class Projectile : MonoBehaviour
     public Character Source { get; set; }
 
     public GameObject particle;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject, 0.1f);
+    }
 }
