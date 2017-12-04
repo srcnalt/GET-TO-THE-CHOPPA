@@ -32,7 +32,6 @@ public class WeaponRifle : WeaponRangedProjectile
         PlaySFXAtPos(projectileObj.transform.position);
 
         DisplayMuzzleFlash();
-
     }
 
     private void DisplayMuzzleFlash()
