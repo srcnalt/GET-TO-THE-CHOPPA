@@ -30,6 +30,7 @@ ModelImporter:
     100044: Bone_020
     100046: Bone_021
     100048: Cube
+    100050: BackBone
     400000: Armature
     400002: //RootNode
     400004: Bone
@@ -55,6 +56,7 @@ ModelImporter:
     400044: Bone_020
     400046: Bone_021
     400048: Cube
+    400050: BackBone
     4300000: Cube
     7400000: Default Take
     7400002: Idle

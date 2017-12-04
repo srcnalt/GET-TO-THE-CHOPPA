@@ -14,6 +14,7 @@ public class PalmTree : MonoBehaviour
         if (coconuts.Count > 0)
         {
             coconuts[0].isKinematic = false;
+            coconuts[0].GetComponent<AudioSource>().Play();
             coconuts.RemoveAt(0);
         }
     }

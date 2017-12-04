@@ -52,10 +52,16 @@ public class Cage : MonoBehaviour, IDamageable
         state = State.Damaged;
 
         Instantiate(explosion, transform.position, Quaternion.identity, transform);
-        undamaged.SetActive(false);
-        damaged.SetActive(true);
+
+        Invoke("ShowDamaged", 1.2f);
 
         nicholas.Release();
         GameManager.Instance.NicholasReleased(nicholas);
+    }
+
+    private void ShowDamaged()
+    {
+        undamaged.SetActive(false);
+        damaged.SetActive(true);
     }
 }

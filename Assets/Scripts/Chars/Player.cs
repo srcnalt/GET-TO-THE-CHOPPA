@@ -19,6 +19,8 @@ public class Player : GoodGuy, IDamageable
     public float Pitch { get { return pitch; } }
     public bool IsAiming { get; private set; }
 
+    public Transform backBone;
+
     private WeaponBase CurrentActiveWeapon
     {
         get { return weapons[0]; }
@@ -73,6 +75,9 @@ public class Player : GoodGuy, IDamageable
 
         pitch += (-Input.GetAxisRaw("Mouse Y") * GameSettings.MOUSE_SENSITIVITY);
         pitch = Mathf.Clamp(pitch, -85f, +85f);
+
+        //backBone rotation
+        backBone.Rotate(pitch, 0, 0);
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
