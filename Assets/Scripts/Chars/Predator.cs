@@ -27,6 +27,9 @@ public class Predator : BadGuy, IDamageable
     [SerializeField]
     private LayerMask aiVisionMask;
 
+    [SerializeField]
+    private bool checkRaycasts = false;
+
     public State CurrentState
     {
         get { return currentState; }
@@ -52,6 +55,10 @@ public class Predator : BadGuy, IDamageable
     private void Start()
     {
         CurrentState = State.SearchingForVictim;
+    }
+
+    protected override void Update()
+    {
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -148,23 +155,27 @@ public class Predator : BadGuy, IDamageable
             GoodGuy goodGuy = goodGuys[i];
             float distance;
 
-            //Vector3 direction = goodGuy.transform.position - transform.position;
-            //direction.Normalize();
-
-            //Ray ray = new Ray(transform.position + Vector3.up * 0.5f, direction);
-
-            //Debug.DrawRay(ray.origin, ray.direction, Color.red);
-
-            //if (!Physics.Raycast(ray, 100f))
-            //{
-            //    Debug.Log("Cannot see GoodGuy: " + goodGuy);
-
-            //    continue;
-            //}
-
             if (IsCloseEnough(goodGuy.transform.position, out distance))
             {
                 //Debug.Log(distance);
+
+                if (checkRaycasts)
+                {
+                    Vector3 direction = goodGuy.transform.position - transform.position;
+                    direction.Normalize();
+
+                    Ray ray = new Ray(transform.position + Vector3.up * 3f, direction);
+
+                    Debug.DrawRay(ray.origin, ray.direction, Color.red);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit, 100f))
+                    {
+                        Debug.Log("Hit: "+hit.transform.name);
+                        if (hit.transform != goodGuy.transform) continue;
+                    }
+                    else continue;
+                }
 
                 if (distance < closestDistance)
                 {
@@ -211,6 +222,10 @@ public class Predator : BadGuy, IDamageable
         CurrentState = State.Dead;
         StopAllCoroutines();
         GameManager.Instance.PredatorDied(this);
+
+        _navMeshAgent.enabled = false;
+        _characterController.enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
 
     private void EnableMovement(bool flag, bool stopImmediately = false)
