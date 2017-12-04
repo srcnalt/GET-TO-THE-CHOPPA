@@ -24,6 +24,9 @@ public class Predator : BadGuy, IDamageable
     [SerializeField]
     private PredatorGun predatorGun;
 
+    [SerializeField]
+    private LayerMask aiVisionMask;
+
     public State CurrentState
     {
         get { return currentState; }
@@ -144,6 +147,16 @@ public class Predator : BadGuy, IDamageable
         {
             GoodGuy goodGuy = goodGuys[i];
             float distance;
+
+            //Vector3 direction = goodGuy.transform.position - transform.position;
+            //direction.Normalize();
+
+            //if (!Physics.Raycast(transform.position, direction, aiVisionMask))
+            //{
+            //    Debug.Log("Cannot see GoodGuy: "+goodGuy);
+
+            //    continue;
+            //}
 
             if (IsCloseEnough(goodGuy.transform.position, out distance))
             {
