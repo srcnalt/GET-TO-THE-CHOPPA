@@ -46,7 +46,6 @@ public class Predator : BadGuy, IDamageable
         _animator = GetComponentInChildren<Animator>();
     }
 
-
     private void Start()
     {
         CurrentState = State.SearchingForVictim;
@@ -131,7 +130,7 @@ public class Predator : BadGuy, IDamageable
     {
         GoodGuy[] goodGuys = GameManager.Instance.TargetableGoodGuys;
 
-        //Debug.Log("GoodGuys: "+goodGuys.Length);
+        Debug.Log("GoodGuys: "+goodGuys.Length);
 
         float closestDistance = float.PositiveInfinity;
         GoodGuy result = null;

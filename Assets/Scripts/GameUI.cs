@@ -40,7 +40,7 @@ public class GameUI : Singleton<GameUI>
         followInstructionsText.enabled = flag;
     }
 
-    private void GameManager_OnNicholasSaved()
+    private void GameManager_OnNicholasSaved(Nicholas savedNicholas)
     {
         UpdateUI();
         TriggerNicholasSavedText();

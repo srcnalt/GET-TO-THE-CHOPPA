@@ -55,5 +55,6 @@ public class Cage : MonoBehaviour, IDamageable
         damaged.SetActive(true);
 
         nicholas.Release();
+        GameManager.Instance.NicholasReleased(nicholas);
     }
 }

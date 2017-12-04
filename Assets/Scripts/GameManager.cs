@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
 {
-    public delegate void EventHandler();
-    public event EventHandler OnNicholasSaved;
+    public delegate void NicholasEventHandler(Nicholas nicholasSaved);
+    public event NicholasEventHandler OnNicholasSaved;
+    public event NicholasEventHandler OnNicholasReleased;
 
     private Player _player;
     private PlayerCamera _playerCamera;
@@ -47,10 +48,16 @@ public class GameManager : Singleton<GameManager>
         targetableGoodGuys.Add(Player);
     }
 
+    public void NicholasReleased(Nicholas nicholas)
+    {
+        targetableGoodGuys.Add(nicholas);
+        if (OnNicholasReleased != null) OnNicholasReleased.Invoke(nicholas);
+    }
+
     public void NicholasSaved(Nicholas nicholas)
     {
         savedNicholases.Add(nicholas);
-        if (OnNicholasSaved != null) OnNicholasSaved.Invoke();
+        if (OnNicholasSaved != null) OnNicholasSaved.Invoke(nicholas);
     }
 
 }
