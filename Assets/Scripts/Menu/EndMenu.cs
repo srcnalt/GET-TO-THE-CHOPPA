@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuScript : MonoBehaviour
+public class EndMenu : MonoBehaviour
 {
     public List<AudioClip> lines;
     public AudioSource source;
-    public GameObject head2;
 
     private int count = 0;
 
@@ -17,18 +16,13 @@ public class MenuScript : MonoBehaviour
 
     private void SaySomething()
     {
-
         source.clip = lines[count % lines.Count];
         source.Play();
         count++;
 
-        head2.SetActive(true);
-
-        Invoke("CloseMouth", source.clip.length);
-    }
-
-    public void CloseMouth()
-    {
-        head2.SetActive(false);
+        if(count == lines.Count)
+        {
+            Application.Quit();
+        }
     }
 }

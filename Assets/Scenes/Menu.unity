@@ -381,6 +381,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e74edf9795f3b7149833db5cb22a858a, type: 3}
   - {fileID: 8300000, guid: a04ac42696030824192f99f3443e6af0, type: 3}
   - {fileID: 8300000, guid: d2df341a74a985648ace96858bcdb973, type: 3}
+  bullet: {fileID: 8300000, guid: 66e9a5fd8a1fdf047bbcf14c8e016dea, type: 3}
   source: {fileID: 396020619}
   head2: {fileID: 1614468913}
 --- !u!1 &401145159
