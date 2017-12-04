@@ -186,6 +186,7 @@ public class Predator : BadGuy, IDamageable
     {
         _animator.SetBool("IsDead", true);
         CurrentState = State.Dead;
+        StopAllCoroutines();
     }
 
     private void EnableMovement(bool flag, bool stopImmediately = false)

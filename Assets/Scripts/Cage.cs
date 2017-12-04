@@ -5,7 +5,8 @@ public class Cage : MonoBehaviour, IDamageable
     private enum State
     {
         Undamaged,
-        Damaged
+        Damaged,
+        Dead
     }
 
     [SerializeField]
