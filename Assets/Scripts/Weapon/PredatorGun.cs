@@ -2,7 +2,7 @@
 
 public class PredatorGun : WeaponRangedProjectile
 {
-    private float thrust = 12f;
+    private float thrust = 20f;
 
     public void FireAtTarget(Character character, Transform target)
     {
