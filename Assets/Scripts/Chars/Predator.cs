@@ -148,19 +148,19 @@ public class Predator : BadGuy, IDamageable
             GoodGuy goodGuy = goodGuys[i];
             float distance;
 
-            Vector3 direction = goodGuy.transform.position - transform.position;
-            direction.Normalize();
+            //Vector3 direction = goodGuy.transform.position - transform.position;
+            //direction.Normalize();
 
-            Ray ray = new Ray(transform.position + Vector3.up * 0.5f, direction);
+            //Ray ray = new Ray(transform.position + Vector3.up * 0.5f, direction);
 
-            Debug.DrawRay(ray.origin, ray.direction, Color.red);
+            //Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
-            if (!Physics.Raycast(ray, 100f))
-            {
-                Debug.Log("Cannot see GoodGuy: " + goodGuy);
+            //if (!Physics.Raycast(ray, 100f))
+            //{
+            //    Debug.Log("Cannot see GoodGuy: " + goodGuy);
 
-                continue;
-            }
+            //    continue;
+            //}
 
             if (IsCloseEnough(goodGuy.transform.position, out distance))
             {

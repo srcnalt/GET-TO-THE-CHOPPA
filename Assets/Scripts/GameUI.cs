@@ -40,14 +40,16 @@ public class GameUI : Singleton<GameUI>
         GameManager.Instance.OnNicholasSaved += GameManager_OnNicholasSaved;
         GameManager.Instance.OnNicholasDied += Instance_OnNicholasDied;
         GameManager.Instance.OnNoMoreNicholasesRemaining += Instance_OnNoMoreNicholasesRemaining;
-        GameManager.Instance.OnReceiveDamage += Instance.Instance_OnReceivedDamage;
+
+        GameManager.Instance.Player.OnDamageReceivedHealth += Player_OnDamageReceivedHealth;
 
         UpdateUI();
     }
 
-    private void Instance_OnReceivedDamage(int life)
+    private void Player_OnDamageReceivedHealth(float currentHealth, float maxHealth)
     {
-        healthAmount.fillAmount = life;
+        float perc = currentHealth / maxHealth;
+        healthAmount.fillAmount = perc;
     }
 
     private void Instance_OnNoMoreNicholasesRemaining()

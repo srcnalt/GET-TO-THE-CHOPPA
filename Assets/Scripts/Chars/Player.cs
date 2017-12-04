@@ -2,9 +2,16 @@
 
 public class Player : GoodGuy, IDamageable
 {
-    public delegate void EventHandler();
+    public enum State
+    {
+        BeingAwesome,
+        Dead
+    }
 
+    public delegate void EventHandler();
+    public delegate void EventHandlerWithHealth(float currentHealth, float maxHealth);
     public event EventHandler OnDamageReceived;
+    public event EventHandlerWithHealth OnDamageReceivedHealth;
 
     [SerializeField]
     private WeaponBase[] weapons;
@@ -20,6 +27,8 @@ public class Player : GoodGuy, IDamageable
     public bool IsAiming { get; private set; }
 
     public Transform backBone;
+
+    private State currentState = State.BeingAwesome;
 
     private WeaponBase CurrentActiveWeapon
     {
@@ -58,6 +67,8 @@ public class Player : GoodGuy, IDamageable
 
     private void PlayerControls()
     {
+        if (currentState == State.Dead) return;
+
         if (Input.GetKey(KeyCode.A)) inputVec.x = -1;
         else if (Input.GetKey(KeyCode.D)) inputVec.x = 1;
         else inputVec.x = 0;
@@ -96,19 +107,18 @@ public class Player : GoodGuy, IDamageable
 
     public void ApplyDamage(float dmg)
     {
+        if (currentState == State.Dead) return;
         health -= dmg;
-        if (health <= 0f)
-        {
-            Die();
-        }
-        else
-        {
-            if (OnDamageReceived != null) OnDamageReceived.Invoke();
-        }
+
+        if (OnDamageReceived != null) OnDamageReceived.Invoke();
+        if (OnDamageReceived != null) OnDamageReceivedHealth.Invoke(this.health, this.maxHealth);
+
+        if (health <= 0f) Die();
     }
 
     public void Die()
     {
+        currentState = State.Dead;
         _animator.SetBool("IsDead", true);
         GameManager.Instance.HeroDied();
     }
