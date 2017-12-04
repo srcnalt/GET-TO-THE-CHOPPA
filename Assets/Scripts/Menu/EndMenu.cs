@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndMenu : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class EndMenu : MonoBehaviour
 
         if(count == lines.Count)
         {
-            Application.Quit();
+            SceneManager.LoadScene("Menu");
         }
     }
 }
