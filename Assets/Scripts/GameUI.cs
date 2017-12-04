@@ -32,12 +32,18 @@ public class GameUI : Singleton<GameUI>
     {
         ShowFollowInstructions(false);
         GameManager.Instance.OnNicholasSaved += GameManager_OnNicholasSaved;
+        GameManager.Instance.OnNicholasDied += Instance_OnNicholasDied;
         UpdateUI();
     }
 
     public void ShowFollowInstructions(bool flag)
     {
         followInstructionsText.enabled = flag;
+    }
+
+    private void Instance_OnNicholasDied(Nicholas nicholasSaved)
+    {
+        UpdateUI();
     }
 
     private void GameManager_OnNicholasSaved(Nicholas savedNicholas)

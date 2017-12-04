@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     private Player _player;
     private PlayerCamera _playerCamera;
 
-    private Nicholas[] _nicholases;
+    private List<Nicholas> saveableNicholases = new List<Nicholas>();
     private List<Nicholas> savedNicholases = new List<Nicholas>();
 
     private List<GoodGuy> targetableGoodGuys = new List<GoodGuy>();
@@ -36,13 +36,13 @@ public class GameManager : Singleton<GameManager>
 
     public List<GoodGuy> TargetableGoodGuys { get { return targetableGoodGuys; } }
 
-    public int NicholasesTotal { get { return _nicholases.Length; } }
+    public int NicholasesTotal { get { return saveableNicholases.Count; } }
     public int NicholasesSaved { get { return savedNicholases.Count; } }
 
     protected override void Awake()
     {
         base.Awake();
-        _nicholases = FindObjectsOfType<Nicholas>();
+        saveableNicholases = new List<Nicholas>(FindObjectsOfType<Nicholas>());
         targetableGoodGuys.Add(Player);
     }
 
@@ -61,6 +61,7 @@ public class GameManager : Singleton<GameManager>
     public void NicholasDied(Nicholas nicholas)
     {
         targetableGoodGuys.Remove(nicholas);
+        saveableNicholases.Remove(nicholas);
         if (OnNicholasDied != null) OnNicholasDied.Invoke(nicholas);
     }
 
