@@ -77,6 +77,11 @@ public class PlayerCamera : Singleton<PlayerCamera>
     #endregion
 
     #region Public Methods
+    //public void CamShake()
+    //{
+    //    Camera.transform.position -= Camera.transform.forward * 1f;
+    //}
+
     public void SetTarget(Transform target)
     {
         _target = target;

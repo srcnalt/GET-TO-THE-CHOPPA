@@ -1423,9 +1423,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 79664d149f7f4164ebf44f084bbd6333, type: 3}
   - {fileID: 8300000, guid: 8daa2ebc867882a46b80dc53b92d20d2, type: 3}
   - {fileID: 8300000, guid: 26fbc9bff1f22454fadd045b01276680, type: 3}
+  - {fileID: 8300000, guid: 7d102d68c1a804f4f8d1a298fa28c0f7, type: 3}
   deathSounds:
   - {fileID: 8300000, guid: 744a1fcecb2058d42a2d88c8aa23fbd0, type: 3}
   - {fileID: 8300000, guid: c7a1120c1e9b2a64390a1c58a6efb868, type: 3}
+  startLevelSounds:
+  - {fileID: 8300000, guid: 79664d149f7f4164ebf44f084bbd6333, type: 3}
+  - {fileID: 8300000, guid: 7d102d68c1a804f4f8d1a298fa28c0f7, type: 3}
+  finalSounds:
+  - {fileID: 8300000, guid: 9faca0758eb7f7e4fbf8af1a2b25b343, type: 3}
+  - {fileID: 8300000, guid: 99ebbb73375aacf4c88be539ca0f5d64, type: 3}
+  - {fileID: 8300000, guid: cb4039c1af5f33e4b965b822612f61f6, type: 3}
 --- !u!137 &137266375042701592
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
