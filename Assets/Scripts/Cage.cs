@@ -37,6 +37,11 @@ public class Cage : MonoBehaviour, IDamageable
         {
             ApplyDamage(projectile.Damage);
             Destroy(projectile.gameObject);
+
+            if (state == State.Undamaged)
+            {
+                GetComponent<AudioSource>().Play();
+            }
         }
     }
 

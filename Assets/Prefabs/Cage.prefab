@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4563307825962172}
   - component: {fileID: 114633234534491542}
   - component: {fileID: 65903239134470692}
+  - component: {fileID: 82160402602901356}
   m_Layer: 0
   m_Name: Cage
   m_TagString: Untagged
@@ -1158,6 +1159,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15.139029, y: 12.860411, z: 15.324913}
   m_Center: {x: 0.04293275, y: 3.8353796, z: 0.015402794}
+--- !u!82 &82160402602901356
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003830947781780}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 46aa2d82d18af044b9342d0f1845b796, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.887
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &82495199750014970
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1270,9 +1351,6 @@ MonoBehaviour:
   maxHealth: 40
   maxSpeed: 5
   velocityDamping: 5
-  painSounds: []
-  deathSounds: []
-  jumpSounds: []
   randomSounds:
   - {fileID: 8300000, guid: 77cb5ea7e437ee04191f943946956a39, type: 3}
   - {fileID: 8300000, guid: da314a7d5fdd389458064186e83c6654, type: 3}
