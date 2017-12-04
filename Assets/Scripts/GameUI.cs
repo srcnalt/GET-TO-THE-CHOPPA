@@ -43,6 +43,7 @@ public class GameUI : Singleton<GameUI>
     private void Instance_OnNoMoreNicholasesRemaining()
     {
         getToTheChoppaText.gameObject.SetActive(true);
+        nicholasSavedText.gameObject.SetActive(false);
     }
 
     public void ShowFollowInstructions(bool flag)
