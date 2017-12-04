@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 120823493945273202}
   - component: {fileID: 54853807391734202}
   - component: {fileID: 114866849870471560}
+  - component: {fileID: 65320239268929050}
   m_Layer: 0
   m_Name: LaserProjectile
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1729076484128580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 43.851967, y: 40.2, z: 63.504288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,6 +58,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65320239268929050
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1729076484128580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.567749, y: 0.549736, z: 3.0814705}
+  m_Center: {x: 0, y: -0.027015686, z: 1.4909954}
 --- !u!114 &114866849870471560
 MonoBehaviour:
   m_ObjectHideFlags: 1

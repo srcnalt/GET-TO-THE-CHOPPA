@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 143590216439697748}
   - component: {fileID: 114461439645205286}
   - component: {fileID: 114322260402502712}
+  - component: {fileID: 65049981140247376}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1047,6 +1048,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917213325669648}
   m_Mesh: {fileID: 4300000, guid: fff0d892b7378644c927eb69d393d62e, type: 3}
+--- !u!65 &65049981140247376
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1967653976939072}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95754316681551648
 Animator:
   serializedVersion: 3
@@ -1056,7 +1069,7 @@ Animator:
   m_GameObject: {fileID: 1179679741610932}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d7b2fb80248e14896b8f0067dc823d5c, type: 3}
-  m_Controller: {fileID: 9100000, guid: 004ee99030952d8429afd178e366daa8, type: 2}
+  m_Controller: {fileID: 9100000, guid: dde4f8374f2c2844abda727a76efb80d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

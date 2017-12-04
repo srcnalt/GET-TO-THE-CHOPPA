@@ -1,5 +1,8 @@
 ﻿using Sacristan.Utils;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -52,6 +55,11 @@ public class GameManager : Singleton<GameManager>
         targetableGoodGuys.Add(Player);
     }
 
+    public void HeroDied()
+    {
+        StartCoroutine(GameObjectRoutine());
+    }
+
     public void NicholasReleased(Nicholas nicholas)
     {
         targetableGoodGuys.Add(nicholas);
@@ -62,6 +70,8 @@ public class GameManager : Singleton<GameManager>
     {
         savedNicholases.Add(nicholas);
         if (OnNicholasSaved != null) OnNicholasSaved.Invoke(nicholas);
+
+        CheckIfAnyMoreNicholases();
     }
 
     public void NicholasDied(Nicholas nicholas)
@@ -71,7 +81,7 @@ public class GameManager : Singleton<GameManager>
         diedNicholases.Add(nicholas);
 
         if (OnNicholasDied != null) OnNicholasDied.Invoke(nicholas);
-
+        CheckIfAnyMoreNicholases();
 
     }
     private void CheckIfAnyMoreNicholases()
@@ -80,9 +90,16 @@ public class GameManager : Singleton<GameManager>
 
         if (!anyNicholasesToSave)
         {
+            UnityEngine.Debug.Log("No more Nicholases to save!");
             if (OnNoMoreNicholasesRemaining != null) OnNoMoreNicholasesRemaining.Invoke();
         }
 
+    }
+
+    private IEnumerator GameObjectRoutine()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(0);
     }
 
 }

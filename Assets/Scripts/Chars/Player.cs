@@ -38,6 +38,17 @@ public class Player : GoodGuy, IDamageable
         base.Update();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+
+        if (projectile != null)
+        {
+            ApplyDamage(projectile.Damage);
+            Destroy(projectile.gameObject);
+        }
+    }
+
     private void PlayerControls()
     {
         if (Input.GetKey(KeyCode.A)) inputVec.x = -1;
@@ -81,6 +92,7 @@ public class Player : GoodGuy, IDamageable
 
     public void Die()
     {
-        throw new System.NotImplementedException();
+        _animator.SetBool("IsDead", true);
+        GameManager.Instance.HeroDied();
     }
 }
