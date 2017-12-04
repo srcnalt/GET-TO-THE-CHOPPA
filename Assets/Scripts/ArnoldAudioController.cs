@@ -13,6 +13,12 @@ public class ArnoldAudioController : MonoBehaviour
     [SerializeField]
     private AudioClip[] deathSounds;
 
+    [SerializeField]
+    private AudioClip[] startLevelSounds;
+
+    [SerializeField]
+    private AudioClip[] finalSounds;
+
     private AudioSource _audioSource;
 
     private void Start()
@@ -22,9 +28,19 @@ public class ArnoldAudioController : MonoBehaviour
 
         player.OnDeath += Player_OnDeath;
         player.OnDamageReceived += Player_OnDamageReceived;
-        GameManager.Instance.OnNicholasReleased += Instance_OnNicholasReleased;
         GameManager.Instance.OnNicholasSaved += Instance_OnNicholasSaved;
         GameManager.Instance.OnPredatorDied += Instance_OnPredatorDied;
+
+        PlayerGameplayController.Instance.OnNickolasRequestFollow += Instance_OnNickolasRequestFollow;
+
+        GameManager.Instance.OnNoMoreNicholasesRemaining += Instance_OnNoMoreNicholasesRemaining;
+
+        PlayStartLevelSound();
+    }
+
+    private void Instance_OnNoMoreNicholasesRemaining()
+    {
+        PlayAudioClip(GetRandomAudioClip(finalSounds));
     }
 
     private void Player_OnDeath()
@@ -47,14 +63,24 @@ public class ArnoldAudioController : MonoBehaviour
         PlayRandomAudio();
     }
 
-    private void Instance_OnNicholasReleased(Character character)
+    private void Instance_OnNickolasRequestFollow()
     {
-        PlayAudioClip( GetRandomAudioClip(releasedCageAudio) );
+        PlayAudioClip(GetRandomAudioClip(releasedCageAudio));
     }
+
+    //private void Instance_OnNicholasReleased(Character character)
+    //{
+    //    PlayAudioClip( GetRandomAudioClip(releasedCageAudio) );
+    //}
 
     private void PlayRandomAudio()
     {
         PlayAudioClip(GetRandomAudioClip(randomAudio));
+    }
+
+    private void PlayStartLevelSound()
+    {
+        PlayAudioClip(GetRandomAudioClip(startLevelSounds));
     }
 
     private void PlayAudioClip(AudioClip clip)

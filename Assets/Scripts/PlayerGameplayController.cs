@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using Sacristan.Utils;
+using UnityEngine;
 
-public class PlayerGameplayController : MonoBehaviour
+public class PlayerGameplayController : Singleton<PlayerGameplayController>
 {
+    public delegate void EventHandler();
+    public event EventHandler OnNickolasRequestFollow;
+
     private static Nicholas selectedNicholas = null;
 
     private void Start()
@@ -50,6 +54,7 @@ public class PlayerGameplayController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 selectedNicholas.PleaseFollow();
+                if (OnNickolasRequestFollow != null) OnNickolasRequestFollow.Invoke();
                 selectedNicholas = null;
             }
         }
