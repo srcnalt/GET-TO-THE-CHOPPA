@@ -57,6 +57,26 @@ public class GameManager : Singleton<GameManager>
         targetableGoodGuys.Add(Player);
     }
 
+    private IEnumerator Start()
+    {
+        while (true)
+        {
+            saveableNicholases.RemoveAll(x => x == null);
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            saveableNicholases = new List<Nicholas>();
+            CheckIfAnyMoreNicholases();
+        }
+    }
+#endif
+
     public void PredatorDied(Predator predator)
     {
         if (OnPredatorDied != null) OnPredatorDied.Invoke(predator);
@@ -64,7 +84,12 @@ public class GameManager : Singleton<GameManager>
 
     public void HeroDied()
     {
-        StartCoroutine(GameObjectRoutine());
+        StartCoroutine(GameOverRoutine());
+    }
+
+    public void HeroSaved()
+    {
+        StartCoroutine(GameWonRoutine());
     }
 
     public void NicholasReleased(Nicholas nicholas)
@@ -102,8 +127,13 @@ public class GameManager : Singleton<GameManager>
         }
 
     }
+    private IEnumerator GameWonRoutine()
+    {
+        yield return null;
+        SceneManager.LoadScene(2);
+    }
 
-    private IEnumerator GameObjectRoutine()
+    private IEnumerator GameOverRoutine()
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(0);

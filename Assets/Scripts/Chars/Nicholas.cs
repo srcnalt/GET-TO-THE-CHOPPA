@@ -74,7 +74,7 @@ public class Nicholas : GoodGuy, IDamageable
     {
         Projectile projectile = collision.gameObject.GetComponent<Projectile>();
 
-        if (projectile != null)
+        if (CurrentState != State.Captured && projectile != null)
         {
             ApplyDamage(projectile.Damage);
             Destroy(projectile.gameObject);

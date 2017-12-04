@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Exfil : MonoBehaviour
+public class ExfilNicholas : MonoBehaviour
 {
+    private bool canSaveArnie = false;
+
     public void OnTriggerEnter(Collider other)
     {
+
         Nicholas nicholas = other.GetComponent<Nicholas>();
 
         if (nicholas != null)
@@ -13,6 +16,7 @@ public class Exfil : MonoBehaviour
             GameManager.Instance.NicholasSaved(nicholas);
             Destroy(nicholas.gameObject);
         }
+
     }
 
 }
