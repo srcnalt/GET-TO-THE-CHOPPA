@@ -10,6 +10,9 @@ public class ArnoldAudioController : MonoBehaviour
     [SerializeField]
     private AudioClip[] randomAudio;
 
+    [SerializeField]
+    private AudioClip[] deathSounds;
+
     private AudioSource _audioSource;
 
     private void Start()
@@ -17,10 +20,17 @@ public class ArnoldAudioController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         Player player = GetComponentInParent<Player>();
 
+        player.OnDeath += Player_OnDeath;
         player.OnDamageReceived += Player_OnDamageReceived;
+
         GameManager.Instance.OnNicholasReleased += Instance_OnNicholasReleased;
         GameManager.Instance.OnNicholasSaved += Instance_OnNicholasSaved;
         GameManager.Instance.OnPredatorDied += Instance_OnPredatorDied;
+    }
+
+    private void Player_OnDeath()
+    {
+        PlayAudioClip(GetRandomAudioClip(deathSounds));
     }
 
     private void Player_OnDamageReceived()

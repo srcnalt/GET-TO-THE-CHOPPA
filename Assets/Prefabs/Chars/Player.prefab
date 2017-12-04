@@ -1338,7 +1338,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7a336d0796b7e13489cb7a98d8684c7e, type: 3}
   randomAudio:
   - {fileID: 8300000, guid: 1b05193600a0e7f47a9ab257143119b3, type: 3}
-  - {fileID: 8300000, guid: c7a1120c1e9b2a64390a1c58a6efb868, type: 3}
   - {fileID: 8300000, guid: cd77e242eec6068489c1369741c38c01, type: 3}
   - {fileID: 8300000, guid: b0837e269afd4184992e47a95bebc059, type: 3}
   - {fileID: 8300000, guid: dfef6be401a326a4f85a287fdcfab0ce, type: 3}
@@ -1349,9 +1348,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b6a3352f6c273fd458751bb93d285d4e, type: 3}
   - {fileID: 8300000, guid: bb9182d8101878c4f846cf156c46b43d, type: 3}
   - {fileID: 8300000, guid: 79664d149f7f4164ebf44f084bbd6333, type: 3}
-  - {fileID: 8300000, guid: 744a1fcecb2058d42a2d88c8aa23fbd0, type: 3}
   - {fileID: 8300000, guid: 8daa2ebc867882a46b80dc53b92d20d2, type: 3}
   - {fileID: 8300000, guid: 26fbc9bff1f22454fadd045b01276680, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 744a1fcecb2058d42a2d88c8aa23fbd0, type: 3}
+  - {fileID: 8300000, guid: c7a1120c1e9b2a64390a1c58a6efb868, type: 3}
 --- !u!137 &137266375042701592
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

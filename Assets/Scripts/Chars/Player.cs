@@ -11,6 +11,7 @@ public class Player : GoodGuy, IDamageable
     public delegate void EventHandler();
     public delegate void EventHandlerWithHealth(float currentHealth, float maxHealth);
     public event EventHandler OnDamageReceived;
+    public event EventHandler OnDeath;
     public event EventHandlerWithHealth OnDamageReceivedHealth;
 
     [SerializeField]
@@ -110,10 +111,10 @@ public class Player : GoodGuy, IDamageable
         if (currentState == State.Dead) return;
         health -= dmg;
 
-        if (OnDamageReceived != null) OnDamageReceived.Invoke();
         if (OnDamageReceived != null) OnDamageReceivedHealth.Invoke(this.health, this.maxHealth);
 
         if (health <= 0f) Die();
+        if (OnDamageReceived != null) OnDamageReceived.Invoke();
     }
 
     public void Die()
@@ -121,5 +122,6 @@ public class Player : GoodGuy, IDamageable
         currentState = State.Dead;
         _animator.SetBool("IsDead", true);
         GameManager.Instance.HeroDied();
+        if (OnDeath != null) OnDeath.Invoke();
     }
 }
