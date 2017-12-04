@@ -12,6 +12,9 @@ public class MenuScript : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         InvokeRepeating("SaySomething", 3, 5);
     }
 
