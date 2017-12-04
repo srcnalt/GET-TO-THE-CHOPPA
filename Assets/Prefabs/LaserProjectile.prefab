@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b868238810efc7f4dad001f586964889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 1775900361726630, guid: 64865cafffa022a4db76481c6c17f162, type: 2}
 --- !u!120 &120823493945273202
 LineRenderer:
   m_ObjectHideFlags: 1

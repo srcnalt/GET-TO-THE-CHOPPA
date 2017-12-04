@@ -77,6 +77,7 @@ public class Nicholas : GoodGuy, IDamageable
         if (CurrentState != State.Captured && projectile != null)
         {
             ApplyDamage(projectile.Damage);
+            Instantiate(projectile.particle, projectile.transform.position, Quaternion.identity);
             Destroy(projectile.gameObject);
         }
     }

@@ -51,6 +51,7 @@ public class Player : GoodGuy, IDamageable
         if (projectile != null && projectile.Source != this)
         {
             ApplyDamage(projectile.Damage);
+            Instantiate(projectile.particle, projectile.transform.position, Quaternion.identity);
             Destroy(projectile.gameObject);
         }
     }
