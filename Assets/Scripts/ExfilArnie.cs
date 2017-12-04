@@ -18,16 +18,17 @@ public class ExfilArnie : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        //TODO: Give Info to player that all nicholases havent been saved if !canSaveArnie
-        if (canSaveArnie)
-        {
-            Player player = other.GetComponent<Player>();
+        Player player = other.GetComponent<Player>();
 
-            if (player != null)
-            {
+        if (player != null)
+        {
+            if (canSaveArnie)
                 GameManager.Instance.HeroSaved();
-            }
+            else
+                GameUI.Instance.ShowNicholasNotSavedInfo();
+
         }
     }
+
 
 }

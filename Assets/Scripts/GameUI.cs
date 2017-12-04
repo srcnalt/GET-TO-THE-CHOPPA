@@ -54,8 +54,14 @@ public class GameUI : Singleton<GameUI>
 
     private void Instance_OnNoMoreNicholasesRemaining()
     {
+        getToTheChoppaText.text = CleverPuns.GetToTheCHOPPAText;
         getToTheChoppaText.gameObject.SetActive(true);
         nicholasSavedText.gameObject.SetActive(false);
+    }
+
+    public void ShowNicholasNotSavedInfo()
+    {
+        StartCoroutine(MoreNicholasesToSaveChoppaTextRoutine());
     }
 
     public void ShowFollowInstructions(bool flag)
@@ -83,6 +89,15 @@ public class GameUI : Singleton<GameUI>
 
         if(isPunBeingDisplayed) StopCoroutine(DisablePun());
         StartCoroutine(DisablePun());
+    }
+
+    private IEnumerator MoreNicholasesToSaveChoppaTextRoutine()
+    {
+        if (getToTheChoppaText.gameObject.activeSelf) yield break;
+        getToTheChoppaText.text = CleverPuns.ThereAreMoreNicholasesToSaveText;
+        getToTheChoppaText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        getToTheChoppaText.gameObject.SetActive(false);
     }
 
     private IEnumerator DisablePun()
