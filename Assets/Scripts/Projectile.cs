@@ -5,4 +5,5 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float Damage { get; set; }
+    public Character Source { get; set; }
 }

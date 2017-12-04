@@ -42,7 +42,7 @@ public class Player : GoodGuy, IDamageable
     {
         Projectile projectile = collision.gameObject.GetComponent<Projectile>();
 
-        if (projectile != null)
+        if (projectile != null && projectile.Source != this)
         {
             ApplyDamage(projectile.Damage);
             Destroy(projectile.gameObject);

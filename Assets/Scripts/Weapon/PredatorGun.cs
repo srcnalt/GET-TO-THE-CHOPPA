@@ -13,13 +13,17 @@ public class PredatorGun : WeaponRangedProjectile
 
         Quaternion rot = Quaternion.LookRotation(dir);
 
-        GameObject projectile = GameObject.Instantiate(projectilePrefab, projectileEjector.transform.position, rot);
-        projectile.GetComponent<Projectile>().Damage = damage;
-        Rigidbody rigidBody = projectile.GetComponent<Rigidbody>();
+        GameObject projectileObj = GameObject.Instantiate(projectilePrefab, projectileEjector.transform.position, rot);
+        Projectile projectile = projectileObj.GetComponent<Projectile>();
+
+        projectile.Damage = damage;
+        projectile.Source = character;
+
+        Rigidbody rigidBody = projectileObj.GetComponent<Rigidbody>();
 
         rigidBody.AddForce(dir * thrust, ForceMode.Impulse);
 
-        Destroy(projectile, 3f);
+        Destroy(projectileObj, 3f);
     }
 
 

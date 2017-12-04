@@ -16,12 +16,16 @@ public class WeaponRifle : WeaponRangedProjectile
 
         PlayerCamera.Instance.CalculateCameraAimTransform(character.transform, player.Pitch, out pos, out rot);
 
-        GameObject projectile = GameObject.Instantiate(projectilePrefab, projectileEjector.transform.position, rot);
-        projectile.GetComponent<Projectile>().Damage = damage;
-        Rigidbody rigidBody = projectile.GetComponent<Rigidbody>();
+        GameObject projectileObj = GameObject.Instantiate(projectilePrefab, projectileEjector.transform.position, rot);
+        Projectile projectile = projectileObj.GetComponent<Projectile>();
 
-        rigidBody.AddForce(projectile.transform.forward * bulletThrust, ForceMode.Impulse);
+        projectile.Damage = damage;
+        projectile.Source = character;
 
-        Destroy(projectile, 1f);
+        Rigidbody rigidBody = projectileObj.GetComponent<Rigidbody>();
+
+        rigidBody.AddForce(projectileObj.transform.forward * bulletThrust, ForceMode.Impulse);
+
+        Destroy(projectileObj, 1f);
     }
 }
