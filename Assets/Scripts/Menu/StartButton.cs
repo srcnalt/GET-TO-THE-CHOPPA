@@ -26,9 +26,12 @@ public class StartButton : MonoBehaviour
         buttonAnimator.SetBool("Selected", false);
     }
 
-    public void MouseDown()
+    public void MouseDown(string target)
     {
-        StartCoroutine("StartGame");
+        if (target == "game")
+            StartCoroutine("StartGame");
+        else
+            SceneManager.LoadScene(2);
     }
 
     public IEnumerator StartGame()
