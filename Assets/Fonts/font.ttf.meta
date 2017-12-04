@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ffa56d21ee242054bb772350b30d7f75
+timeCreated: 1512387368
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Arnold 2.1
+  fontNames:
+  - Arnold 2.1
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
