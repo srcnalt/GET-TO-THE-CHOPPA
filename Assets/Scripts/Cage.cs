@@ -60,8 +60,11 @@ public class Cage : MonoBehaviour, IDamageable
 
         Invoke("ShowDamaged", 1.2f);
 
-        nicholas.Release();
-        GameManager.Instance.NicholasReleased(nicholas);
+        if(nicholas.CurrentState != Nicholas.State.Dead)
+        {
+            nicholas.Release();
+            GameManager.Instance.NicholasReleased(nicholas);
+        }
     }
 
     private void ShowDamaged()
