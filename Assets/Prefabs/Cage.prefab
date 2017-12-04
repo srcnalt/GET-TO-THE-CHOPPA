@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 195576488406339194}
   - component: {fileID: 65392148864364976}
   - component: {fileID: 143363591384269964}
+  - component: {fileID: 65877949595606154}
   m_Layer: 0
   m_Name: Nicholas
   m_TagString: Untagged
@@ -1132,6 +1133,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 30, y: 10, z: 30}
   m_Center: {x: 0, y: 5, z: 0}
+--- !u!65 &65877949595606154
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1544098705275728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 10, z: 3}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!65 &65903239134470692
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1153,7 +1166,7 @@ Animator:
   m_GameObject: {fileID: 1084617434825954}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c8a11a5b621ac5548a9bb003dd1a9ae7, type: 3}
-  m_Controller: {fileID: 9100000, guid: d293bed75d3fd21469fd87ce6f6c15b5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 12cc58c7f5efe0942839831538dfb48a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1172,8 +1185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984bbfcafe11c56439c315c20aeaf6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 40
+  maxHealth: 40
   maxSpeed: 5
   velocityDamping: 5
   painSounds: []
@@ -1184,6 +1197,7 @@ MonoBehaviour:
   released: {fileID: 2800000, guid: 815a887ef6060f440a00f347b7c8894b, type: 3}
   wandering: {fileID: 2800000, guid: 290b9fb52c195b84d86d91412ed95e87, type: 3}
   following: {fileID: 2800000, guid: f21b2d10266dd9147acbd1f971c2cb3d, type: 3}
+  dead: {fileID: 2800000, guid: 7abcde8bab23d4e4095a85ec4f0fd04c, type: 3}
 --- !u!114 &114633234534491542
 MonoBehaviour:
   m_ObjectHideFlags: 1

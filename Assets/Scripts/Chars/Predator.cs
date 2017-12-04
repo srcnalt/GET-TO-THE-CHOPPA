@@ -97,6 +97,12 @@ public class Predator : BadGuy, IDamageable
     {
         while (currentState == State.Attacking)
         {
+            if(!GameManager.Instance.TargetableGoodGuys.Contains(target))
+            {
+                CurrentState = State.SearchingForVictim;
+                yield break;
+            }
+
             if (IsCloseEnoughToTarget())
             {
                 EnableMovement(false, true);
@@ -128,9 +134,7 @@ public class Predator : BadGuy, IDamageable
 
     private GoodGuy FindCloseEnoughTarget()
     {
-        GoodGuy[] goodGuys = GameManager.Instance.TargetableGoodGuys;
-
-        Debug.Log("GoodGuys: "+goodGuys.Length);
+        GoodGuy[] goodGuys = GameManager.Instance.TargetableGoodGuys.ToArray();
 
         float closestDistance = float.PositiveInfinity;
         GoodGuy result = null;
@@ -179,7 +183,7 @@ public class Predator : BadGuy, IDamageable
     public void ApplyDamage(float dmg)
     {
         health -= dmg;
-        if (health <= 0f) Die();
+        if (health <= 0f && CurrentState != State.Dead) Die();
     }
 
     public void Die()

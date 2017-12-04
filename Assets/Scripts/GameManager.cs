@@ -6,6 +6,7 @@ public class GameManager : Singleton<GameManager>
     public delegate void NicholasEventHandler(Nicholas nicholasSaved);
     public event NicholasEventHandler OnNicholasSaved;
     public event NicholasEventHandler OnNicholasReleased;
+    public event NicholasEventHandler OnNicholasDied;
 
     private Player _player;
     private PlayerCamera _playerCamera;
@@ -33,10 +34,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public GoodGuy[] TargetableGoodGuys
-    {
-        get { return targetableGoodGuys.ToArray(); }
-    }
+    public List<GoodGuy> TargetableGoodGuys { get { return targetableGoodGuys; } }
 
     public int NicholasesTotal { get { return _nicholases.Length; } }
     public int NicholasesSaved { get { return savedNicholases.Count; } }
@@ -58,6 +56,12 @@ public class GameManager : Singleton<GameManager>
     {
         savedNicholases.Add(nicholas);
         if (OnNicholasSaved != null) OnNicholasSaved.Invoke(nicholas);
+    }
+
+    public void NicholasDied(Nicholas nicholas)
+    {
+        targetableGoodGuys.Remove(nicholas);
+        if (OnNicholasDied != null) OnNicholasDied.Invoke(nicholas);
     }
 
 }

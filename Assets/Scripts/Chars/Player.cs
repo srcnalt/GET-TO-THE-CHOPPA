@@ -75,7 +75,8 @@ public class Player : GoodGuy, IDamageable
 
     public void ApplyDamage(float dmg)
     {
-        throw new System.NotImplementedException();
+        health -= dmg;
+        if (health <= 0f) Die();
     }
 
     public void Die()

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class Nicholas : GoodGuy
+public class Nicholas : GoodGuy, IDamageable
 {
     private const float CloseEnoughDistance = 0.5f;
     private const float CloseEnoughDistanceFollow = 1.5f;
@@ -14,7 +14,8 @@ public class Nicholas : GoodGuy
         Captured,
         Released,
         Wandering,
-        Following
+        Following,
+        Dead
     }
 
     [SerializeField]
@@ -31,6 +32,9 @@ public class Nicholas : GoodGuy
 
     [SerializeField]
     private Texture2D following;
+
+    [SerializeField]
+    private Texture2D dead;
 
     State currentState = State.None;
 
@@ -61,6 +65,16 @@ public class Nicholas : GoodGuy
         _animator = GetComponentInChildren<Animator>();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+
+        if (projectile != null)
+        {
+            ApplyDamage(projectile.Damage);
+            Destroy(projectile.gameObject);
+        }
+    }
 
     #endregion
 
@@ -109,6 +123,9 @@ public class Nicholas : GoodGuy
             case State.Following:
                 HandleFollowing();
                 break;
+            case State.Dead:
+                HandleDead();
+                break;
         }
     }
 
@@ -131,8 +148,13 @@ public class Nicholas : GoodGuy
 
     private void HandleFollowing()
     {
-        ChangeFacialExpression(following);
+
         StartCoroutine(FollowingRoutine());
+    }
+
+    private void HandleDead()
+    {
+        ChangeFacialExpression(dead); 
     }
 
     #endregion
@@ -252,4 +274,17 @@ public class Nicholas : GoodGuy
         _navMeshAgent.isStopped = !flag;
     }
 
+    public void ApplyDamage(float dmg)
+    {
+        health -= dmg;
+        if (health <= 0f && CurrentState != State.Dead) Die();
+    }
+
+    public void Die()
+    {
+        _animator.SetBool("IsDead", true);
+        CurrentState = State.Dead;
+        StopAllCoroutines();
+        GameManager.Instance.NicholasDied(this);
+    }
 }
