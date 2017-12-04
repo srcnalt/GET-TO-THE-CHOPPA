@@ -18,6 +18,9 @@ public class GameUI : Singleton<GameUI>
     [SerializeField]
     private Text getToTheChoppaText;
 
+    [SerializeField]
+    private Image healthAmount;
+
     private GameCrosshairUI _crosshairUI;
 
     private bool isPunBeingDisplayed = false;
@@ -37,7 +40,14 @@ public class GameUI : Singleton<GameUI>
         GameManager.Instance.OnNicholasSaved += GameManager_OnNicholasSaved;
         GameManager.Instance.OnNicholasDied += Instance_OnNicholasDied;
         GameManager.Instance.OnNoMoreNicholasesRemaining += Instance_OnNoMoreNicholasesRemaining;
+        GameManager.Instance.OnReceiveDamage += Instance.Instance_OnReceivedDamage;
+
         UpdateUI();
+    }
+
+    private void Instance_OnReceivedDamage(int life)
+    {
+        healthAmount.fillAmount = life;
     }
 
     private void Instance_OnNoMoreNicholasesRemaining()
