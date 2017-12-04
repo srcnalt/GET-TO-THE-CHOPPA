@@ -15,6 +15,14 @@ public class EndMenu : MonoBehaviour
         InvokeRepeating("SaySomething", 3, 5);
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");
+        }
+    }
+
     private void SaySomething()
     {
         source.clip = lines[count % lines.Count];
