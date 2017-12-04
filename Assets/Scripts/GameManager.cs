@@ -3,16 +3,21 @@ using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
 {
+    public delegate void EventHandler();
     public delegate void NicholasEventHandler(Nicholas nicholasSaved);
+
     public event NicholasEventHandler OnNicholasSaved;
     public event NicholasEventHandler OnNicholasReleased;
     public event NicholasEventHandler OnNicholasDied;
+
+    public event EventHandler OnNoMoreNicholasesRemaining;
 
     private Player _player;
     private PlayerCamera _playerCamera;
 
     private List<Nicholas> saveableNicholases = new List<Nicholas>();
     private List<Nicholas> savedNicholases = new List<Nicholas>();
+    private List<Nicholas> diedNicholases = new List<Nicholas>();
 
     private List<GoodGuy> targetableGoodGuys = new List<GoodGuy>();
 
@@ -38,6 +43,7 @@ public class GameManager : Singleton<GameManager>
 
     public int NicholasesTotal { get { return saveableNicholases.Count; } }
     public int NicholasesSaved { get { return savedNicholases.Count; } }
+    public int NicholasesDied { get { return diedNicholases.Count; } }
 
     protected override void Awake()
     {
@@ -62,7 +68,21 @@ public class GameManager : Singleton<GameManager>
     {
         targetableGoodGuys.Remove(nicholas);
         saveableNicholases.Remove(nicholas);
+        diedNicholases.Add(nicholas);
+
         if (OnNicholasDied != null) OnNicholasDied.Invoke(nicholas);
+
+
+    }
+    private void CheckIfAnyMoreNicholases()
+    {
+        bool anyNicholasesToSave = saveableNicholases.FindAll(x => x != null).Count > 0;
+
+        if (!anyNicholasesToSave)
+        {
+            if (OnNoMoreNicholasesRemaining != null) OnNoMoreNicholasesRemaining.Invoke();
+        }
+
     }
 
 }
