@@ -82,6 +82,11 @@ public class Nicholas : GoodGuy, IDamageable
         }
     }
 
+    protected override void Update()
+    {
+
+    }
+
     #endregion
 
     #region Public Methods
@@ -298,6 +303,10 @@ public class Nicholas : GoodGuy, IDamageable
         CurrentState = State.Dead;
         StopAllCoroutines();
         GameManager.Instance.NicholasDied(this);
+
+        _navMeshAgent.enabled = false;
+        _characterController.enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
 
     private void MakeRandomSound()
