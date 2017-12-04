@@ -26,6 +26,8 @@ public class GameManager : Singleton<GameManager>
 
     private List<GoodGuy> targetableGoodGuys = new List<GoodGuy>();
 
+    private int nicholasesTotal = 0;
+
     public Player Player
     {
         get
@@ -46,7 +48,7 @@ public class GameManager : Singleton<GameManager>
 
     public List<GoodGuy> TargetableGoodGuys { get { return targetableGoodGuys; } }
 
-    public int NicholasesTotal { get { return saveableNicholases.Count; } }
+    public int NicholasesTotal { get { return nicholasesTotal; } }
     public int NicholasesSaved { get { return savedNicholases.Count; } }
     public int NicholasesDied { get { return diedNicholases.Count; } }
 
@@ -54,8 +56,29 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         saveableNicholases = new List<Nicholas>(FindObjectsOfType<Nicholas>());
+        nicholasesTotal = saveableNicholases.Count;
         targetableGoodGuys.Add(Player);
     }
+
+    private IEnumerator Start()
+    {
+        while (true)
+        {
+            saveableNicholases.RemoveAll(x => x == null);
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            saveableNicholases = new List<Nicholas>();
+            CheckIfAnyMoreNicholases();
+        }
+    }
+#endif
 
     public void PredatorDied(Predator predator)
     {
@@ -64,7 +87,12 @@ public class GameManager : Singleton<GameManager>
 
     public void HeroDied()
     {
-        StartCoroutine(GameObjectRoutine());
+        StartCoroutine(GameOverRoutine());
+    }
+
+    public void HeroSaved()
+    {
+        StartCoroutine(GameWonRoutine());
     }
 
     public void NicholasReleased(Nicholas nicholas)
@@ -76,6 +104,7 @@ public class GameManager : Singleton<GameManager>
     public void NicholasSaved(Nicholas nicholas)
     {
         savedNicholases.Add(nicholas);
+        saveableNicholases.Remove(nicholas);
         if (OnNicholasSaved != null) OnNicholasSaved.Invoke(nicholas);
 
         CheckIfAnyMoreNicholases();
@@ -86,6 +115,8 @@ public class GameManager : Singleton<GameManager>
         targetableGoodGuys.Remove(nicholas);
         saveableNicholases.Remove(nicholas);
         diedNicholases.Add(nicholas);
+
+        if (nicholasesTotal > 0) nicholasesTotal--;
 
         if (OnNicholasDied != null) OnNicholasDied.Invoke(nicholas);
         CheckIfAnyMoreNicholases();
@@ -102,8 +133,13 @@ public class GameManager : Singleton<GameManager>
         }
 
     }
+    private IEnumerator GameWonRoutine()
+    {
+        yield return null;
+        SceneManager.LoadScene(2);
+    }
 
-    private IEnumerator GameObjectRoutine()
+    private IEnumerator GameOverRoutine()
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(0);

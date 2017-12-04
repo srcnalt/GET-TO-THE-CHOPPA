@@ -15,6 +15,9 @@ public class GameUI : Singleton<GameUI>
     [SerializeField]
     private Text nicholasSavedText;
 
+    [SerializeField]
+    private Text getToTheChoppaText;
+
     private GameCrosshairUI _crosshairUI;
 
     private bool isPunBeingDisplayed = false;
@@ -33,7 +36,14 @@ public class GameUI : Singleton<GameUI>
         ShowFollowInstructions(false);
         GameManager.Instance.OnNicholasSaved += GameManager_OnNicholasSaved;
         GameManager.Instance.OnNicholasDied += Instance_OnNicholasDied;
+        GameManager.Instance.OnNoMoreNicholasesRemaining += Instance_OnNoMoreNicholasesRemaining;
         UpdateUI();
+    }
+
+    private void Instance_OnNoMoreNicholasesRemaining()
+    {
+        getToTheChoppaText.gameObject.SetActive(true);
+        nicholasSavedText.gameObject.SetActive(false);
     }
 
     public void ShowFollowInstructions(bool flag)
