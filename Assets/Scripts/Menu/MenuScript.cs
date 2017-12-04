@@ -12,6 +12,7 @@ public class MenuScript : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
         InvokeRepeating("SaySomething", 3, 7);
     }
 

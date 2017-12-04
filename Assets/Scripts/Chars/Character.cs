@@ -16,15 +16,6 @@ public abstract class Character : Pawn
     [SerializeField]
     protected float velocityDamping = 5;
 
-    [Header("AudioClips")]
-
-    [SerializeField]
-    protected AudioClip[] painSounds;
-    [SerializeField]
-    protected AudioClip[] deathSounds;
-    [SerializeField]
-    protected AudioClip[] jumpSounds;
-
     protected Vector3 velocity;
     protected CharacterController _characterController;
 

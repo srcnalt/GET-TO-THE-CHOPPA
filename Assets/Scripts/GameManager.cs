@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public delegate void EventHandler();
-    public delegate void NicholasEventHandler(Nicholas nicholasSaved);
+    public delegate void CharacterEventHandler(Character character);
 
-    public event NicholasEventHandler OnNicholasSaved;
-    public event NicholasEventHandler OnNicholasReleased;
-    public event NicholasEventHandler OnNicholasDied;
+    public event CharacterEventHandler OnNicholasSaved;
+    public event CharacterEventHandler OnNicholasReleased;
+    public event CharacterEventHandler OnNicholasDied;
+
+    public event CharacterEventHandler OnPredatorDied;
 
     public event EventHandler OnNoMoreNicholasesRemaining;
 
@@ -53,6 +55,11 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         saveableNicholases = new List<Nicholas>(FindObjectsOfType<Nicholas>());
         targetableGoodGuys.Add(Player);
+    }
+
+    public void PredatorDied(Predator predator)
+    {
+        if (OnPredatorDied != null) OnPredatorDied.Invoke(predator);
     }
 
     public void HeroDied()
