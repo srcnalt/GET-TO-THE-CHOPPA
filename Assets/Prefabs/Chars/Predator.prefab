@@ -1005,7 +1005,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d063991719879a49b359383d0ec3173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireSounds: []
+  fireSounds:
+  - {fileID: 8300000, guid: e7ac6b5882325dd47bc84775e3310610, type: 3}
+  - {fileID: 8300000, guid: ecd8b31bd3decd34885d1f1031ac2187, type: 3}
   damage: 10
   refireRate: 100
   fireFrame: 0

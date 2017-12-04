@@ -35,6 +35,9 @@ public abstract class WeaponBase : MonoBehaviour
         GameObject sgxGo = new GameObject("sfx", typeof(AudioSource));
         AudioSource sfx = sgxGo.GetComponent<AudioSource>();
 
+        //sfx.spatialBlend = 1f;
+        //sfx.spatialize = true;
+
         sfx.PlayOneShot(audioClip);
 
         Destroy(sgxGo, audioClip.length);

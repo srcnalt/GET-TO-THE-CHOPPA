@@ -24,6 +24,7 @@ public class PredatorGun : WeaponRangedProjectile
         rigidBody.AddForce(dir * thrust, ForceMode.Impulse);
 
         Destroy(projectileObj, 3f);
+        PlaySFXAtPos(projectileObj.transform.position);
     }
 
 

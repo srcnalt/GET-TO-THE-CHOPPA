@@ -22,7 +22,6 @@ public class ArnoldAudioController : MonoBehaviour
 
         player.OnDeath += Player_OnDeath;
         player.OnDamageReceived += Player_OnDamageReceived;
-
         GameManager.Instance.OnNicholasReleased += Instance_OnNicholasReleased;
         GameManager.Instance.OnNicholasSaved += Instance_OnNicholasSaved;
         GameManager.Instance.OnPredatorDied += Instance_OnPredatorDied;
