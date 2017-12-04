@@ -19,6 +19,9 @@ public class Nicholas : GoodGuy, IDamageable
     }
 
     [SerializeField]
+    private AudioClip[] randomSounds;
+
+    [SerializeField]
     private Renderer facialExpressionRenderer;
 
     [SerializeField]
@@ -40,6 +43,7 @@ public class Nicholas : GoodGuy, IDamageable
 
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
+    private AudioSource _audioSource;
 
     #region Properties
     public State CurrentState
@@ -63,6 +67,7 @@ public class Nicholas : GoodGuy, IDamageable
         CurrentState = State.Captured;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -82,6 +87,7 @@ public class Nicholas : GoodGuy, IDamageable
 
     public void PleaseFollow()
     {
+        MakeRandomSound();
         CurrentState = State.Following;
     }
 
@@ -154,7 +160,7 @@ public class Nicholas : GoodGuy, IDamageable
 
     private void HandleDead()
     {
-        ChangeFacialExpression(dead); 
+        ChangeFacialExpression(dead);
     }
 
     #endregion
@@ -168,6 +174,7 @@ public class Nicholas : GoodGuy, IDamageable
         _navMeshAgent.SetDestination(transform.position + transform.forward * 3f);
 
         EnableMovement(true);
+        MakeRandomSound();
         yield return new WaitUntil(() => IsCloseEnough());
         EnableMovement(false);
 
@@ -185,6 +192,7 @@ public class Nicholas : GoodGuy, IDamageable
             _navMeshAgent.SetDestination(destinationPoint);
 
             EnableMovement(true);
+            MakeRandomSound();
             yield return new WaitUntil(() => IsCloseEnough());
             EnableMovement(false);
 
@@ -206,6 +214,7 @@ public class Nicholas : GoodGuy, IDamageable
             if (startedFollowingTime + timeAfterToLoseInterest < Time.time)
             {
                 EnableMovement(false);
+                MakeRandomSound();
                 _navMeshAgent.SetDestination(Vector3.zero);
                 CurrentState = State.Wandering;
             }
@@ -276,15 +285,30 @@ public class Nicholas : GoodGuy, IDamageable
 
     public void ApplyDamage(float dmg)
     {
+        MakeRandomSound();
         health -= dmg;
         if (health <= 0f && CurrentState != State.Dead) Die();
     }
 
     public void Die()
     {
+        MakeRandomSound();
         _animator.SetBool("IsDead", true);
         CurrentState = State.Dead;
         StopAllCoroutines();
         GameManager.Instance.NicholasDied(this);
+    }
+
+    private void MakeRandomSound()
+    {
+        StartCoroutine(MakeRandomSoundRoutine());
+    }
+
+    private IEnumerator MakeRandomSoundRoutine()
+    {
+        int index = Random.Range(0, randomSounds.Length);
+        AudioClip audioClip = randomSounds[index];
+        _audioSource.PlayOneShot(audioClip);
+        yield return new WaitForSeconds(audioClip.length);
     }
 }

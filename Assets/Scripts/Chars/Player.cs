@@ -2,6 +2,10 @@
 
 public class Player : GoodGuy, IDamageable
 {
+    public delegate void EventHandler();
+
+    public event EventHandler OnDamageReceived;
+
     [SerializeField]
     private WeaponBase[] weapons;
 
@@ -19,7 +23,7 @@ public class Player : GoodGuy, IDamageable
     {
         get { return weapons[0]; }
     }
-		
+
     protected override void Awake()
     {
         base.Awake();
@@ -87,7 +91,14 @@ public class Player : GoodGuy, IDamageable
     public void ApplyDamage(float dmg)
     {
         health -= dmg;
-        if (health <= 0f) Die();
+        if (health <= 0f)
+        {
+            Die();
+        }
+        else
+        {
+            if (OnDamageReceived != null) OnDamageReceived.Invoke();
+        }
     }
 
     public void Die()

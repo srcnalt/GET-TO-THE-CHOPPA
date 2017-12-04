@@ -191,6 +191,7 @@ public class Predator : BadGuy, IDamageable
         _animator.SetBool("IsDead", true);
         CurrentState = State.Dead;
         StopAllCoroutines();
+        GameManager.Instance.PredatorDied(this);
     }
 
     private void EnableMovement(bool flag, bool stopImmediately = false)

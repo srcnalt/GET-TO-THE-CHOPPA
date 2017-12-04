@@ -41,12 +41,12 @@ public class GameUI : Singleton<GameUI>
         followInstructionsText.enabled = flag;
     }
 
-    private void Instance_OnNicholasDied(Nicholas nicholasSaved)
+    private void Instance_OnNicholasDied(Character nicholas)
     {
         UpdateUI();
     }
 
-    private void GameManager_OnNicholasSaved(Nicholas savedNicholas)
+    private void GameManager_OnNicholasSaved(Character nicholas)
     {
         UpdateUI();
         TriggerNicholasSavedText();
