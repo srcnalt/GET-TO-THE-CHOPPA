@@ -5,6 +5,8 @@ public class WeaponRifle : WeaponRangedProjectile
 {
     private float bulletThrust = 10f;
 
+    public Transform muzzleFlash;
+
     public override void Fire(Character character)
     {
         this.fireFrame = Time.frameCount;
@@ -28,5 +30,20 @@ public class WeaponRifle : WeaponRangedProjectile
 
         Destroy(projectileObj, 1f);
         PlaySFXAtPos(projectileObj.transform.position);
+
+        DisplayMuzzleFlash();
+    }
+
+    private void DisplayMuzzleFlash()
+    {
+        muzzleFlash.gameObject.SetActive(true);
+        muzzleFlash.Rotate(Vector3.right, Random.Range(0f, 90f));
+
+        Invoke("HideMuzzleFlash", 0.2f);
+    }
+
+    private void HideMuzzleFlash()
+    {
+        muzzleFlash.gameObject.SetActive(false);
     }
 }
