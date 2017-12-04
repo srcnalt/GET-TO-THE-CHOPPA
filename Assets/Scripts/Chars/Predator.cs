@@ -87,7 +87,7 @@ public class Predator : BadGuy, IDamageable
         while (CurrentState == State.SearchingForVictim)
         {
             target = FindCloseEnoughTarget();
-
+                
             if (target != null)
             {
                 CurrentState = State.Attacking;
@@ -148,15 +148,19 @@ public class Predator : BadGuy, IDamageable
             GoodGuy goodGuy = goodGuys[i];
             float distance;
 
-            //Vector3 direction = goodGuy.transform.position - transform.position;
-            //direction.Normalize();
+            Vector3 direction = goodGuy.transform.position - transform.position;
+            direction.Normalize();
 
-            //if (!Physics.Raycast(transform.position, direction, aiVisionMask))
-            //{
-            //    Debug.Log("Cannot see GoodGuy: "+goodGuy);
+            Ray ray = new Ray(transform.position + Vector3.up * 0.5f, direction);
 
-            //    continue;
-            //}
+            Debug.DrawRay(ray.origin, ray.direction, Color.red);
+
+            if (!Physics.Raycast(ray, 100f))
+            {
+                Debug.Log("Cannot see GoodGuy: " + goodGuy);
+
+                continue;
+            }
 
             if (IsCloseEnough(goodGuy.transform.position, out distance))
             {
