@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 65392148864364976}
   - component: {fileID: 143363591384269964}
   - component: {fileID: 65877949595606154}
+  - component: {fileID: 82495199750014970}
   m_Layer: 10
   m_Name: Nicholas
   m_TagString: Untagged
@@ -1157,6 +1158,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15.139029, y: 12.860411, z: 15.324913}
   m_Center: {x: 0.04293275, y: 3.8353796, z: 0.015402794}
+--- !u!82 &82495199750014970
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1544098705275728}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 256
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95814607771537516
 Animator:
   serializedVersion: 3
@@ -1192,6 +1273,21 @@ MonoBehaviour:
   painSounds: []
   deathSounds: []
   jumpSounds: []
+  randomSounds:
+  - {fileID: 8300000, guid: 77cb5ea7e437ee04191f943946956a39, type: 3}
+  - {fileID: 8300000, guid: da314a7d5fdd389458064186e83c6654, type: 3}
+  - {fileID: 8300000, guid: 41ea85ce15906624c8ff3de6451f5c69, type: 3}
+  - {fileID: 8300000, guid: 4955ba87ca276094ca961abba7fbc561, type: 3}
+  - {fileID: 8300000, guid: c6e17d95f5e9afd48a4eca78f60e885f, type: 3}
+  - {fileID: 8300000, guid: ea913a702cc81a34a830cf85a6f2b456, type: 3}
+  - {fileID: 8300000, guid: 4482c26d6a4d97d439ba3bfde582a433, type: 3}
+  - {fileID: 8300000, guid: 749930e97c63dbf43a5d59776f17ca2e, type: 3}
+  - {fileID: 8300000, guid: d3a87166a16e3404ab01c0877a7fb855, type: 3}
+  - {fileID: 8300000, guid: 68cce457c72bed446bdec2c0a4fc40f8, type: 3}
+  - {fileID: 8300000, guid: ba58ea6c23710b74a948ea3b4dcbfd4a, type: 3}
+  - {fileID: 8300000, guid: f31a2eb9f40915b4b8d34ee08c6ce720, type: 3}
+  - {fileID: 8300000, guid: 9863e4febcfbb924d96eca8c0b04ecf6, type: 3}
+  - {fileID: 8300000, guid: 46158674d9daff344a254c7d62a682a6, type: 3}
   facialExpressionRenderer: {fileID: 137704311340279958}
   captured: {fileID: 2800000, guid: 5ffc40168f413c74d96461641431d63d, type: 3}
   released: {fileID: 2800000, guid: 815a887ef6060f440a00f347b7c8894b, type: 3}
