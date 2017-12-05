@@ -30,6 +30,11 @@ public class Predator : BadGuy, IDamageable
     [SerializeField]
     private bool checkRaycasts = false;
 
+    [SerializeField]
+    private AudioClip[] deathSounds;
+
+    private AudioSource _audioSource;
+
     public State CurrentState
     {
         get { return currentState; }
@@ -50,6 +55,7 @@ public class Predator : BadGuy, IDamageable
         base.Awake();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -223,6 +229,8 @@ public class Predator : BadGuy, IDamageable
         StopAllCoroutines();
         GameManager.Instance.PredatorDied(this);
 
+        MakeDeathSound();
+
         _navMeshAgent.enabled = false;
         _characterController.enabled = false;
         GetComponent<Collider>().enabled = false;
@@ -248,4 +256,19 @@ public class Predator : BadGuy, IDamageable
                 break;
         }
     }
+
+
+    private void MakeDeathSound()
+    {
+        StartCoroutine(MakeDeathSoundRoutine());
+    }
+
+    private IEnumerator MakeDeathSoundRoutine()
+    {
+        int index = Random.Range(0, deathSounds.Length);
+        AudioClip audioClip = deathSounds[index];
+        _audioSource.PlayOneShot(audioClip);
+        yield return new WaitForSeconds(audioClip.length);
+    }
 }
+
