@@ -19,6 +19,9 @@ public class ArnoldAudioController : MonoBehaviour
     [SerializeField]
     private AudioClip[] finalSounds;
 
+    [SerializeField]
+    private AudioClip[] killedEnemySounds;
+
     private AudioSource _audioSource;
 
     private void Start()
@@ -55,7 +58,8 @@ public class ArnoldAudioController : MonoBehaviour
 
     private void Instance_OnPredatorDied(Character character)
     {
-        PlayRandomAudio();
+
+        PlayAudioClip(GetRandomAudioClip(killedEnemySounds));
     }
 
     private void Instance_OnNicholasSaved(Character character)
