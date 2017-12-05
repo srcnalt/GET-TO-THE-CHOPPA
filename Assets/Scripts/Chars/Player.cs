@@ -54,6 +54,16 @@ public class Player : GoodGuy, IDamageable
         base.Update();
     }
 
+    private void LateUpdate()
+    {
+        //backBone rotation
+        Vector3 rot = Camera.main.transform.rotation.eulerAngles;
+        rot.y += 180;
+        rot.x *= -1;
+        rot.x += 20;
+        backBone.eulerAngles = rot;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         Projectile projectile = collision.gameObject.GetComponent<Projectile>();
@@ -87,10 +97,7 @@ public class Player : GoodGuy, IDamageable
         yaw %= 360f;
 
         pitch += (-Input.GetAxisRaw("Mouse Y") * GameSettings.MOUSE_SENSITIVITY);
-        pitch = Mathf.Clamp(pitch, -85f, +85f);
-
-        //backBone rotation
-        backBone.Rotate(pitch, 0, 0);
+        pitch = Mathf.Clamp(pitch, -30f, +30f);
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
