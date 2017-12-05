@@ -89,5 +89,7 @@ public class ExfilArnie : MonoBehaviour
         }
 
         SceneManager.LoadScene(2);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
