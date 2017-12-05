@@ -69,16 +69,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-//#if UNITY_EDITOR
-//    private void Update()
-//    {
-//        if (Input.GetKeyDown(KeyCode.F))
-//        {
-//            saveableNicholases = new List<Nicholas>();
-//            CheckIfAnyMoreNicholases();
-//        }
-//    }
-//#endif
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            saveableNicholases = new List<Nicholas>();
+            CheckIfAnyMoreNicholases();
+        }
+    }
+#endif
 
     public void PredatorDied(Predator predator)
     {
