@@ -30,8 +30,10 @@ public class StartButton : MonoBehaviour
     {
         if (target == "game")
             StartCoroutine("StartGame");
-        else if(target == "menu")
+        else if (target == "menu")
             SceneManager.LoadScene(0);
+        else if (target == "quit")
+            Application.Quit();
         else
             SceneManager.LoadScene(2);
     }
