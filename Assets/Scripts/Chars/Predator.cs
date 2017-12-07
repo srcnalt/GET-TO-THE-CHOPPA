@@ -233,6 +233,7 @@ public class Predator : BadGuy, IDamageable
 
         _navMeshAgent.enabled = false;
         _characterController.enabled = false;
+
         GetComponent<Collider>().enabled = false;
     }
 
