@@ -79,10 +79,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4448883674787618}
+  - component: {fileID: 65091230747642218}
   - component: {fileID: 114112499839508062}
   - component: {fileID: 195047671394864774}
   - component: {fileID: 143382248397236100}
-  - component: {fileID: 65091230747642218}
   - component: {fileID: 82126958423146194}
   m_Layer: 11
   m_Name: Predator

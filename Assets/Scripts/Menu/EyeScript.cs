@@ -5,12 +5,10 @@ public class EyeScript : MonoBehaviour
     public Transform eyeCenter;
 
     float margin = 0;
-    Resolution resolution;
 
     private void Start()
     {
         eyeCenter.position = transform.position;
-        resolution = Screen.currentResolution;
     }
 
     void Update ()
