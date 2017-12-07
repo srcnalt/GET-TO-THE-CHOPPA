@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1569250357}
-  m_IndirectSpecularColor: {r: 0.44627005, g: 0.4908901, b: 0.5468054, a: 1}
+  m_IndirectSpecularColor: {r: 0.44627064, g: 0.49089086, b: 0.54680604, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: 8d939051bd93bcc47b36dc1a96f98f70,
+  m_LightingDataAsset: {fileID: 112000646, guid: 8d939051bd93bcc47b36dc1a96f98f70,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -14528,12 +14528,12 @@ Prefab:
     - target: {fileID: 224549374620127136, guid: 5c1c5f6ecf1592e4f8ef9f890101ac70,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 164.5
+      value: 477
       objectReference: {fileID: 0}
     - target: {fileID: 224549374620127136, guid: 5c1c5f6ecf1592e4f8ef9f890101ac70,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 109.5
+      value: 293
       objectReference: {fileID: 0}
     - target: {fileID: 224549374620127136, guid: 5c1c5f6ecf1592e4f8ef9f890101ac70,
         type: 2}
