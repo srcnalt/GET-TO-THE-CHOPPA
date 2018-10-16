@@ -50,6 +50,16 @@ public class PlayerCamera : Singleton<PlayerCamera>
         get { return cam.GetComponent<Camera>(); }
     }
 
+    public Vector3 Dir
+    {
+        get
+        {
+            var ray = Camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+            return ray.direction;
+        }
+
+    }
+
     public System.Func<bool> GetAiming;
     public System.Func<float> GetPitch;
 
