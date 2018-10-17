@@ -2,9 +2,9 @@
 {
     public static readonly string[] NicholasSavedPuns = new string[]
     {
-        "NICHOLAS CAGE!",
+        "NICLASS CAGE!",
         "Thank You, Arnold!",
-        "Ty! Never thougt I gonna be Caged!",
+        "Ty! Never thougt to be Caged!",
         "Bananas!",
         "Im Nickel-less Cage!",
         "ConAir FTW!",
@@ -15,6 +15,6 @@
         "I was fine without You!"
     };
 
-    public const string ThereAreMoreNicholasesToSaveText = "I NYAAR TO SAVE NICHOLASES!";
+    public const string ThereAreMoreNicholasesToSaveText = "I NYAAR TO SAVE MORE NICLASSES!";
     public const string GetToTheCHOPPAText = "GET TO THE CHOPPA!!!";
 }
