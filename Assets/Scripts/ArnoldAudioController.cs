@@ -48,7 +48,7 @@ public class ArnoldAudioController : MonoBehaviour
 
     private void Player_OnDeath()
     {
-        PlayAudioClip(GetRandomAudioClip(deathSounds));
+        PlayAudioClip(GetRandomAudioClip(deathSounds), true);
     }
 
     private void Player_OnDamageReceived()
@@ -87,9 +87,9 @@ public class ArnoldAudioController : MonoBehaviour
         PlayAudioClip(GetRandomAudioClip(startLevelSounds));
     }
 
-    private void PlayAudioClip(AudioClip clip)
+    private void PlayAudioClip(AudioClip clip, bool allowOverride = false)
     {
-        if (_audioSource.isPlaying) return;
+        if (!allowOverride && _audioSource.isPlaying) return;
         _audioSource.PlayOneShot(clip);
     }
 
