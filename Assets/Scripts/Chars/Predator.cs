@@ -100,7 +100,7 @@ public class Predator : BadGuy, IDamageable
         while (CurrentState == State.SearchingForVictim)
         {
             target = FindCloseEnoughTarget();
-                
+
             if (target != null)
             {
                 CurrentState = State.Attacking;
@@ -114,7 +114,7 @@ public class Predator : BadGuy, IDamageable
     {
         while (currentState == State.Attacking)
         {
-            if(!GameManager.Instance.TargetableGoodGuys.Contains(target))
+            if (!GameManager.Instance.TargetableGoodGuys.Contains(target))
             {
                 CurrentState = State.SearchingForVictim;
                 yield break;
@@ -170,17 +170,12 @@ public class Predator : BadGuy, IDamageable
                     Vector3 direction = goodGuy.transform.position - transform.position;
                     direction.Normalize();
 
-                    Ray ray = new Ray(transform.position + Vector3.up * 3f, direction);
+                    Ray ray = new Ray(transform.position + transform.up * 3f, direction);
 
                     Debug.DrawRay(ray.origin, ray.direction, Color.red);
                     RaycastHit hit;
 
-                    if (Physics.Raycast(ray, out hit, 100f))
-                    {
-                        Debug.Log("Hit: "+hit.transform.name);
-                        if (hit.transform != goodGuy.transform) continue;
-                    }
-                    else continue;
+                    if (Physics.Raycast(ray, out hit, 100f, aiVisionMask)) continue;
                 }
 
                 if (distance < closestDistance)
