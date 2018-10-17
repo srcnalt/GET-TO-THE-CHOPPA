@@ -17,9 +17,8 @@ public class WeaponRifle : WeaponRangedProjectile
         Player player = (Player) character;
 
         Vector3 dir = PlayerCamera.Instance.Dir;
-        rot = Quaternion.Euler(dir);
 
-        // PlayerCamera.Instance.CalculateCameraAimTransform(character.transform, player.Pitch, out pos, out rot);
+        PlayerCamera.Instance.CalculateCameraAimTransform(character.transform, player.Pitch, out pos, out rot);
 
         GameObject projectileObj = GameObject.Instantiate(projectilePrefab, projectileEjector.transform.position, rot);
         Projectile projectile = projectileObj.GetComponent<Projectile>();
