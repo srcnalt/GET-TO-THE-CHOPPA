@@ -88,7 +88,7 @@ public class ExfilArnie : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(Scenes.Credits);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
