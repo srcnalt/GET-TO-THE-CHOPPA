@@ -16,7 +16,10 @@ public class WeaponRifle : WeaponRangedProjectile
 
         Player player = (Player) character;
 
-        PlayerCamera.Instance.CalculateCameraAimTransform(character.transform, player.Pitch, out pos, out rot);
+        Vector3 dir = PlayerCamera.Instance.Dir;
+        rot = Quaternion.Euler(dir);
+
+        // PlayerCamera.Instance.CalculateCameraAimTransform(character.transform, player.Pitch, out pos, out rot);
 
         GameObject projectileObj = GameObject.Instantiate(projectilePrefab, projectileEjector.transform.position, rot);
         Projectile projectile = projectileObj.GetComponent<Projectile>();
@@ -26,7 +29,7 @@ public class WeaponRifle : WeaponRangedProjectile
 
         Rigidbody rigidBody = projectileObj.GetComponent<Rigidbody>();
 
-        rigidBody.AddForce(projectileObj.transform.forward * bulletThrust, ForceMode.Impulse);
+        rigidBody.AddForce(dir * bulletThrust, ForceMode.Impulse);
 
         Destroy(projectileObj, 1f);
         PlaySFXAtPos(projectileObj.transform.position);

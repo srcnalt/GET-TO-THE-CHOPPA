@@ -26,21 +26,29 @@ public class Player : GoodGuy, IDamageable
     public float Yaw { get { return yaw; } }
     public float Pitch { get { return pitch; } }
     public bool IsAiming { get; private set; }
-
-    public Transform backBone;
-
-    private State currentState = State.BeingAwesome;
-
     private WeaponBase CurrentActiveWeapon
     {
         get { return weapons[0]; }
     }
+
+    public Vector3 ShootDirection
+    {
+        get { return _camera.transform.forward; }
+    }
+
+    public Transform backBone;
+    private Camera _camera;
+
+    private State currentState = State.BeingAwesome;
+
+
 
     protected override void Awake()
     {
         base.Awake();
 
         _animator = GetComponentInChildren<Animator>();
+        _camera = Camera.main;
     }
 
     private void Start()
@@ -57,7 +65,7 @@ public class Player : GoodGuy, IDamageable
     private void LateUpdate()
     {
         //backBone rotation
-        Vector3 rot = Camera.main.transform.rotation.eulerAngles;
+        Vector3 rot = _camera.transform.rotation.eulerAngles;
         rot.y += 180;
         rot.x *= -1;
         rot.x += 20;

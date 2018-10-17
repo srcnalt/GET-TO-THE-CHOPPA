@@ -10,6 +10,11 @@ public class EndMenu : MonoBehaviour
 
     private int count = 0;
 
+    public void OpenNYAARGHWebpage()
+    {
+        Global.OpenNyaarghWebpage();
+    }
+
     private void Start()
     {
         InvokeRepeating("SaySomething", 3, 5);
@@ -19,7 +24,7 @@ public class EndMenu : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene(Scenes.Menu);
         }
     }
 
@@ -29,9 +34,9 @@ public class EndMenu : MonoBehaviour
         source.Play();
         count++;
 
-        if(count == lines.Count)
+        if (count == lines.Count)
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene(Scenes.Menu);
         }
     }
 }

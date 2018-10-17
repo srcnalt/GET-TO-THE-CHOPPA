@@ -31,11 +31,11 @@ public class StartButton : MonoBehaviour
         if (target == "game")
             StartCoroutine("StartGame");
         else if (target == "menu")
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(Scenes.Menu);
         else if (target == "quit")
             Application.Quit();
         else
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(Scenes.Credits);
     }
 
     public IEnumerator StartGame()
@@ -49,6 +49,6 @@ public class StartButton : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(Scenes.Game);
     }
 }

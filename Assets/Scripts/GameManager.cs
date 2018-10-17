@@ -136,13 +136,13 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator GameWonRoutine()
     {
         yield return null;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(Scenes.Credits);
     }
 
     private IEnumerator GameOverRoutine()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(Scenes.Menu);
     }
 
 }
